@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: goblin-spine01_Atlas
+  m_EditorClassIdentifier: 
+  atlasFile: {fileID: 4900000, guid: 7dc9847cc2db9e440a058539b883b65f, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 6d185af028e57ab4c9b6360905ad4612, type: 2}
+  - {fileID: 2100000, guid: bc19a41d3b340ed4382a6aa0c117a9f6, type: 2}
