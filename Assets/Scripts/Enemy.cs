@@ -12,9 +12,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float health;
     private bool isAlive;
 
-    // Knockback Related
+    // Knockback and stun Related
     [HideInInspector]
     public bool canBeKnockedBack;
+    [HideInInspector]
+    public bool isStunned;
     private float knockBackForce = 10f;
     private float knockBackCooldown = 0.2f;
 
@@ -60,7 +62,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isAlive)
+        if (isAlive && !isStunned)
         {
             move();
         }
@@ -149,5 +151,17 @@ public class Enemy : MonoBehaviour
         enemyRigidbody.AddForce(force, ForceMode2D.Impulse);
         canBeKnockedBack = false;
         StartCoroutine(knockbackTimer());
+    }
+
+    //handles cooldown for stun
+    public IEnumerator stunTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+    }
+    public void stun(float duration)
+    {
+        isStunned = true;
+        StartCoroutine(stunTimer(duration));
     }
 }

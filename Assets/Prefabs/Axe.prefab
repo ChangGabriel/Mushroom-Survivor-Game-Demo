@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageRangeProcentage: 0.2
   rotateSpeed: 2000
+  stunDuration: 0.2
 --- !u!61 &4649582355782873625
 BoxCollider2D:
   m_ObjectHideFlags: 0

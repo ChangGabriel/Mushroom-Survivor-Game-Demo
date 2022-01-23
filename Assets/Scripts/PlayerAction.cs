@@ -94,7 +94,7 @@ public class PlayerAction : MonoBehaviour
         {
             isThrown = false;
             canCallBack = true;
-            axe.GetComponent<AxeThrow>().setcanKnockback(false);
+            axe.GetComponent<AxeThrow>().setcanStun(false);
             axe.GetComponent<AxeThrow>().setisRotating(false);
             axe.GetComponent<AxeThrow>().setcanDamage(false);
         }

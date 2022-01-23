@@ -8,15 +8,17 @@ public class AxeThrow : MonoBehaviour
     private float damageRange;
     [SerializeField] private float damageRangeProcentage;
     [SerializeField] private float rotateSpeed;
+    [SerializeField] private float stunDuration;
+    private Collider2D enemyHit;
     private Vector3 playerPos;
     private bool isRotating;
     private bool canDamage;
-    private bool canKnockBack;
+    private bool canStun;
 
     // Start is called before the first frame update
     void Start()
     {
-        canKnockBack = true;
+        canStun = true;
     }
 
     // Update is called once per frame
@@ -39,14 +41,15 @@ public class AxeThrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy") && canDamage) //axe can not damage when it has landed
+        if (other.gameObject.CompareTag("Enemy") && canDamage && !(enemyHit == other)) //axe can not damage when it has landed
         {
+
+            enemyHit = other;
             CinemachineShake.Instance.shakeCamera(3.5f, 0.1f); //shake camera if enemy is hit
             //Knockback and damage
-            if (other.GetComponent<Enemy>().canBeKnockedBack && canKnockBack)
+            if (!other.GetComponent<Enemy>().isStunned && canStun)
             {
-                Vector2 knockBackDir = (other.transform.position - playerPos).normalized; //direction of the slash
-                other.GetComponent<Enemy>().knockback(knockBackDir);
+                other.GetComponent<Enemy>().stun(stunDuration);
             }
             damageRange = Random.Range((damage - damage * damageRangeProcentage), (damage + damage * damageRangeProcentage));
             other.GetComponent<Enemy>().takeDamage(damageRange);
@@ -62,9 +65,9 @@ public class AxeThrow : MonoBehaviour
     {
         canDamage = i;
     }
-    public void setcanKnockback(bool i)
+    public void setcanStun(bool i)
     {
-        canKnockBack = i;
+        canStun = i;
     }
     public void setAxeDamage(float damage)
     {
