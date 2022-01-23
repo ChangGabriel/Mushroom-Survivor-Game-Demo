@@ -9,7 +9,8 @@ public class AxeThrow : MonoBehaviour
     [SerializeField] private float damageRangeProcentage;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float stunDuration;
-    private Collider2D enemyHit;
+    [HideInInspector]
+    public Collider2D enemyHit;
     private Vector3 playerPos;
     private bool isRotating;
     private bool canDamage;

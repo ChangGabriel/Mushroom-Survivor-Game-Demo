@@ -97,6 +97,7 @@ public class PlayerAction : MonoBehaviour
             axe.GetComponent<AxeThrow>().setcanStun(false);
             axe.GetComponent<AxeThrow>().setisRotating(false);
             axe.GetComponent<AxeThrow>().setcanDamage(false);
+            axe.GetComponent<AxeThrow>().enemyHit = null;
         }
         // Handle when axe has reached back to player
         if (Vector2.Distance(axe.transform.position, attackPoint.transform.position) <= 0.01f)
