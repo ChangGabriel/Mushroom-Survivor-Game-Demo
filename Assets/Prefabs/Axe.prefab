@@ -238,6 +238,7 @@ MonoBehaviour:
   damageRangeProcentage: 0.2
   rotateSpeed: 2000
   stunDuration: 0.2
+  enemyHit: {fileID: 0}
 --- !u!61 &4649582355782873625
 BoxCollider2D:
   m_ObjectHideFlags: 0

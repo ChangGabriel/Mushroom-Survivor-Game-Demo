@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected private float maxHealth;
     [SerializeField] private float health;
     private bool isAlive;
+    private bool isHurt;
 
     // Knockback and stun Related
     [HideInInspector]
@@ -22,11 +24,12 @@ public class Enemy : MonoBehaviour
 
     // Material related
     protected Material matWhite;
-    protected Material matDeath;
     protected Material matDefault;
+    private MaterialPropertyBlock mpb;
 
     // Connected objects
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
+    private SkeletonAnimation skeletonAnimation;
     private Rigidbody2D enemyRigidbody;
     [SerializeField] private GameObject deathEffect;
     [SerializeField] private GameObject damageCanvas;
@@ -44,11 +47,13 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         canBeKnockedBack = true;
         isAlive = true;
+        isHurt = false;
         enemyRigidbody = GetComponent<Rigidbody2D>();
-        spriteRenderer = transform.GetComponent<SpriteRenderer>();
-        matWhite = Resources.Load("Materials/White-Flash", typeof(Material)) as Material;
-        matDefault = spriteRenderer.material;
-
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        mpb = new MaterialPropertyBlock();
+        //spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        //matWhite = Resources.Load("Materials/White-Flash", typeof(Material)) as Material;
+        //matDefault = spriteRenderer.material;
 
         // Target player
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -62,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isAlive && !isStunned)
+        if (isAlive && !isStunned && !isHurt)
         {
             move();
         }
@@ -78,6 +83,11 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, target.position) <= aggroDistance && !(Vector2.Distance(transform.position, target.position) <= attackRange))
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+            skeletonAnimation.AnimationName = "jump";
+        }
+        else
+        {
+            skeletonAnimation.AnimationName = "idle";
         }
 
     }
@@ -87,11 +97,13 @@ public class Enemy : MonoBehaviour
         //Enemy faces player by fliping the sprite
         if ((Vector2.Distance(transform.position, target.position) <= aggroDistance) && transform.position.x < target.position.x)
         {
-            spriteRenderer.flipX = true;
+            //spriteRenderer.flipX = true;
+            skeletonAnimation.skeleton.ScaleX = -1;
         }
         else if (Vector2.Distance(transform.position, target.position) <= aggroDistance)
         {
-            spriteRenderer.flipX = false;
+            //spriteRenderer.flipX = false;
+            skeletonAnimation.skeleton.ScaleX = 1;
         }
     }
 
@@ -104,7 +116,11 @@ public class Enemy : MonoBehaviour
             damageNum.setUIDamage(Mathf.RoundToInt(damage)); 
 
             health -= damage;
-            spriteRenderer.material = matWhite;
+            isHurt = true;
+            skeletonAnimation.AnimationName = "hurt";
+            StartCoroutine(hurtTimer());
+            mpb.SetFloat("_FillPhase", 1.0f);
+            GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
 
             if (health <= 0)
             {
@@ -126,8 +142,9 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive)
         {
-            spriteRenderer.material = matDefault;
-
+            //spriteRenderer.material = matDefault;
+            mpb.SetFloat("_FillPhase", 0.0f);
+            GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
         }
     }
     private void die()
@@ -136,6 +153,13 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //handles cooldown for hurt boolean
+    public IEnumerator hurtTimer()
+    {
+        float hurtDuration = skeletonAnimation.skeleton.Data.FindAnimation("hurt").Duration;
+        yield return new WaitForSeconds(hurtDuration);
+        isHurt = false;
+    }
     //handles cooldown for knockback
     public IEnumerator knockbackTimer()
     {

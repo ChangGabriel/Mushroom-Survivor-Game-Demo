@@ -13,7 +13,7 @@ public class waveManager : MonoBehaviour
     public class Wave
     {
         public string name;
-        public int numberOfBoars; //number of boars to spawn
+        public int numberOfFrogs; //number of boars to spawn
     }
 
     // Wave and enemy related
@@ -144,12 +144,12 @@ public class waveManager : MonoBehaviour
     //handles the wave spawning. Sets the numberOfEnemies for the current wave and also creates wave parent gameObject for enemies to spawn in.
     private IEnumerator spawnWave(Wave _wave)
     {
-        numberOfEnemies = _wave.numberOfBoars;
+        numberOfEnemies = _wave.numberOfFrogs;
         var waveGO = new GameObject();
         waveGO.transform.parent = gameObject.transform;
         waveGO.name = _wave.name;
 
-        for (int i = 0; i < _wave.numberOfBoars; i++)
+        for (int i = 0; i < _wave.numberOfFrogs; i++)
         {
             spawnEnemy(boar, waveGO);
             yield return new WaitForSeconds(0.2f);
