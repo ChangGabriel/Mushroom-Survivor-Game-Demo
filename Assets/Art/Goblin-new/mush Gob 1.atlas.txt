@@ -1,0 +1,132 @@
+
+mush Gob 1.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mush-gob01/body
+  rotate: true
+  xy: 647, 348
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+mush-gob02/body
+  rotate: true
+  xy: 647, 348
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+mush-gob01/ear-L
+  rotate: true
+  xy: 1026, 34
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob02/ear-L
+  rotate: true
+  xy: 1026, 34
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob01/ear-R
+  rotate: false
+  xy: 647, 160
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob02/ear-R
+  rotate: false
+  xy: 647, 160
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob01/eye-L
+  rotate: false
+  xy: 2, 2
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob02/eye-L
+  rotate: false
+  xy: 2, 2
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob01/eye-R
+  rotate: false
+  xy: 221, 2
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob02/eye-R
+  rotate: false
+  xy: 221, 2
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob01/hat
+  rotate: false
+  xy: 2, 723
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+mush-gob01/head
+  rotate: false
+  xy: 2, 217
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+mush-gob02/head
+  rotate: false
+  xy: 2, 217
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+mush-gob01/leg-L
+  rotate: false
+  xy: 1026, 509
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob02/leg-L
+  rotate: false
+  xy: 1026, 509
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob01/leg-R
+  rotate: false
+  xy: 1103, 509
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob02/leg-R
+  rotate: false
+  xy: 1103, 509
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob02/hat
+  rotate: true
+  xy: 1185, 388
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
