@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         move();
     }
 
-    //Handles the players facing direction
+    //Handles the players facing direction (attack up or down change animation acordingly)
     void playerFaceDirection()
     {
         movement.x = Input.GetAxisRaw("Horizontal"); //when moving right movement.x = 1 and left movement.x = -1
@@ -66,16 +66,23 @@ public class PlayerController : MonoBehaviour
     //Handles the players movement
     private void move()
     {
+        //Debug.Log(movement.y);
+
         movement.x = Input.GetAxisRaw("Horizontal"); //when moving right movement.x = 1 and left movement.x = -1
         movement.y = Input.GetAxisRaw("Vertical");
         playerRB.MovePosition(playerRB.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
         if(movement.normalized == Vector2.zero)
         {
-            skeletonAnimation.AnimationName = "idle";
+            skeletonAnimation.AnimationName = "Idle";
         }
-        else
+        if (!(movement.normalized == Vector2.zero) && movement.y <= 0)
         {
-            skeletonAnimation.AnimationName = "Running";
+            skeletonAnimation.AnimationName = "Run";
+        }
+        else if(!(movement.normalized == Vector2.zero))
+        {
+            skeletonAnimation.AnimationName = "RunB";
+
         }
     }
 
