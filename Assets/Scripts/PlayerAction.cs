@@ -10,7 +10,9 @@ public class PlayerAction : MonoBehaviour
     //Slash attack related
     [SerializeField] private GameObject slashPrefab;
     [SerializeField] private float slashDamage;
-
+    [SerializeField] private float slashCooldown;
+    private bool canSlash;
+    
     //Axe throw related
     [SerializeField] private GameObject axePrefab;
     [SerializeField] private float axeDamage; //axe rotation speed when thrown
@@ -25,17 +27,22 @@ public class PlayerAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canSlash = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        //slash attack
+        if (Input.GetMouseButtonDown(0) && canSlash)
         {
+            StartCoroutine(slashCooldownTimer());
+            canSlash = false;
             slashAttack(); //Slash Attack
         }
 
-        if (Input.GetMouseButtonDown(1) && !isThrown) //Axe Throw
+        //Axe Throw
+        if (Input.GetMouseButtonDown(1) && !isThrown) 
         {
             isThrown = true;
             if (!canCallBack)
@@ -61,6 +68,13 @@ public class PlayerAction : MonoBehaviour
         slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
         slashSpawn.transform.parent = attackPoint;
 
+    }
+
+    //handles cooldown for hurt boolean
+    private IEnumerator slashCooldownTimer()
+    {
+        yield return new WaitForSeconds(slashCooldown);
+        canSlash = true;
     }
 
     private void spawnAxe()

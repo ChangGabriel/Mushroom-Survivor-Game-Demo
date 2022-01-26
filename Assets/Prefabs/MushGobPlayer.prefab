@@ -287,7 +287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 918249177494617936}
   slashPrefab: {fileID: 3145592695506350143, guid: 12c8f948b02cf654997b2773448d6fd5, type: 3}
-  slashDamage: 10
+  slashDamage: 20
+  slashCooldown: 0.4
   axePrefab: {fileID: 6181424051750733056, guid: 856f20a92b1574948bf215cbced3500e, type: 3}
   axeDamage: 15
   projectileSpeed: 10
