@@ -113,7 +113,9 @@ public class Enemy : MonoBehaviour
         {
             //Damage number UI related
             DamageNumber damageNum = Instantiate(damageCanvas, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
-            damageNum.setUIDamage(Mathf.RoundToInt(damage)); 
+            damageNum.setUIDamage(Mathf.RoundToInt(damage));
+            //Shake Cam
+            CinemachineShake.Instance.shakeCamera(4.0f, 0.1f);
 
             health -= damage;
             isHurt = true;
@@ -160,6 +162,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(hurtDuration);
         isHurt = false;
     }
+  
     //handles cooldown for knockback
     public IEnumerator knockbackTimer()
     {

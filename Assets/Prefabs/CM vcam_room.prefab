@@ -203,3 +203,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad7bdb88c6449042a9176e9ce4ed87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraShakeCooldown: 0.2

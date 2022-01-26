@@ -46,7 +46,7 @@ public class AxeThrow : MonoBehaviour
         {
 
             enemyHit = other;
-            CinemachineShake.Instance.shakeCamera(3.5f, 0.1f); //shake camera if enemy is hit
+            //CinemachineShake.Instance.shakeCamera(3.5f, 0.1f); //shake camera if enemy is hit
             //Knockback and damage
             if (!other.GetComponent<Enemy>().isStunned && canStun)
             {
