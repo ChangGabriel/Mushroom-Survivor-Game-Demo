@@ -16,7 +16,7 @@ public class Frog : Enemy
 
 
     //Handles player taking damage and player can't get hit more than once per attack
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
