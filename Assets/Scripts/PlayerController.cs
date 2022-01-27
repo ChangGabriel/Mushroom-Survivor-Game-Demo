@@ -11,35 +11,54 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform shadow;
     private SkeletonAnimation skeletonAnimation;
     private bool isAttacking; //from playerAction script
+
     // Player stats
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxHealth;
     private float currentHealth;
 
+    /* Experience and level related
+    private int level;
+    private int currentExp = 0;
+    private int requiredExp = 10; 
+    */
+
+    // Material related
+    protected Material matWhite;
+    protected Material matDefault;
+    private MaterialPropertyBlock mpb;
+
     // Hidden variables in inspector
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
+    private bool isAlive;
+    private bool isHurt;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        isAlive = true;
+        isHurt = false;
         playerRB = GetComponent<Rigidbody2D>();
+        mpb = new MaterialPropertyBlock();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         currentHealth = maxHealth;
-
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void FixedUpdate()
     {
-        move();
+        if (isAlive)
+        {
+            move();
+        }
     }
 
     //Handles the players movement
@@ -51,15 +70,15 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal"); //when moving right movement.x = 1 and left movement.x = -1
         movement.y = Input.GetAxisRaw("Vertical");
         playerRB.MovePosition(playerRB.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
-        if(!isAttacking && movement.normalized == Vector2.zero)
+        if(!isHurt && !isAttacking && movement.normalized == Vector2.zero)
         {
             skeletonAnimation.AnimationName = "Idle";
         }
-        if (!isAttacking && !(movement.normalized == Vector2.zero) && movement.y <= 0)
+        if (!isHurt && !isAttacking && !(movement.normalized == Vector2.zero) && movement.y <= 0)
         {
             skeletonAnimation.AnimationName = "Run";
         }
-        else if(!isAttacking && !(movement.normalized == Vector2.zero))
+        else if(!isHurt && !isAttacking && !(movement.normalized == Vector2.zero))
         {
             skeletonAnimation.AnimationName = "RunB";
 
@@ -70,6 +89,12 @@ public class PlayerController : MonoBehaviour
     public void playerTakeDamage(float damage)
     {
         currentHealth -= damage;
+        //Boolean for hurt animation
+        isHurt = true;
+        skeletonAnimation.AnimationName = "Hurt";
+        StartCoroutine(hurtTimer());
+        mpb.SetFloat("_FillPhase", 1.0f);
+        GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
 
         if (currentHealth < 0)
         {
@@ -77,23 +102,43 @@ public class PlayerController : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            isAlive = false;
             playerRB.velocity = Vector2.zero;
-            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            mpb.SetFloat("_FillPhase", 1.0f);
+            GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
             StartCoroutine(die());
+        }
+        else
+        {
+            Invoke("resetMat", 0.1f);
         }
     }
 
     //Handle player death
     private IEnumerator die()
     {
-        float ticks = 10f;
-        for (int i = 1; i < ticks + 1; i++)
-        {
-            spriteRenderer.material.SetFloat("_Fade", 1 - i / ticks);
-            yield return new WaitForSeconds(0.2f);
-        }
-        yield return new WaitForSeconds(7.0f);
+        yield return new WaitForSeconds(4.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //restart to current scene
 
+    }
+
+    //Resets the material to default
+    private void resetMat()
+    {
+        if (isAlive)
+        {
+            //spriteRenderer.material = matDefault;
+            mpb.SetFloat("_FillPhase", 0.0f);
+            GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
+        }
+    }
+
+    //handles cooldown for hurt boolean
+    public IEnumerator hurtTimer()
+    {
+        float hurtDuration = skeletonAnimation.skeleton.Data.FindAnimation("Hurt").Duration; //0.6667 sec
+        yield return new WaitForSeconds(hurtDuration);
+        isHurt = false;
     }
 }

@@ -174,16 +174,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Frog
-  moveSpeed: 2
   maxHealth: 100
-  health: 0
+  attackCooldown: 0.7
   canBeKnockedBack: 0
   isStunned: 0
   deathEffect: {fileID: 6485420372967819292, guid: e018f19b68826d046bce0555fb6c4ee4, type: 3}
   damageCanvas: {fileID: 702463089465384646, guid: 45ea39b0c9c637c44b2aeefdf12264c7, type: 3}
   target: {fileID: 0}
   aggroDistance: 100
-  attackRange: 1
+  attackRange: 0.1
+  frogDamage: 10
+  frogMoveSpeed: 2
 --- !u!1 &6521388666314723854
 GameObject:
   m_ObjectHideFlags: 0

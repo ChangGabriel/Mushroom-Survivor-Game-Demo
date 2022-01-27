@@ -21,7 +21,6 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] private GameObject axePrefab;
     [SerializeField] private float axeDamage; //axe rotation speed when thrown
     [SerializeField] private float projectileSpeed;
-    [SerializeField] private float axeMaxRange;
     private GameObject axe;
     private Vector3 targetPos; //where we want to the axe to reach
     private bool isThrown;
@@ -84,8 +83,7 @@ public class PlayerAction : MonoBehaviour
     void playerFaceDirection()
     {
         Vector3 cameraPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(cameraPoint.y - transform.position.y);
-        if (cameraPoint.y-transform.position.y <= 0)
+        if (cameraPoint.y - transform.position.y <= 0)
         {
             skeletonAnimation.AnimationName = "Run";
         }

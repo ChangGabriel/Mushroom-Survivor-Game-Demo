@@ -8,11 +8,14 @@ public class Enemy : MonoBehaviour
 
     // Enemy stats
     [SerializeField] private string enemyName;
-    [SerializeField] protected private float moveSpeed;
     [SerializeField] protected private float maxHealth;
-    [SerializeField] private float health;
+    [SerializeField] protected private float attackCooldown;
+    private float health;
+    protected private float moveSpeed;
     private bool isAlive;
     private bool isHurt;
+    protected private bool canAttack;
+
 
     // Knockback and stun Related
     [HideInInspector]
@@ -42,12 +45,13 @@ public class Enemy : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         health = maxHealth;
         canBeKnockedBack = true;
         isAlive = true;
         isHurt = false;
+        canAttack = true;
         enemyRigidbody = GetComponent<Rigidbody2D>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         mpb = new MaterialPropertyBlock();
@@ -190,5 +194,10 @@ public class Enemy : MonoBehaviour
     {
         isStunned = true;
         StartCoroutine(stunTimer(duration));
+    }
+    protected IEnumerator attackTimer()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 }

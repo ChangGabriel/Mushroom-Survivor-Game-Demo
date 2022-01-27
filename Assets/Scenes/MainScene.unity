@@ -23466,7 +23466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bfd26efb4759b40951a4862be8c112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimer: 100000
+  waveTimer: 60
   boar: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
   enemyPortals:
   - {fileID: 60111951}
@@ -23480,7 +23480,7 @@ MonoBehaviour:
   activeSpawner: []
   waves:
   - name: wave1
-    numberOfFrogs: 0
+    numberOfFrogs: 10
   - name: wave2
     numberOfFrogs: 25
   - name: wave3
@@ -23726,14 +23726,6 @@ PrefabInstance:
     - target: {fileID: 918249177901070828, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070829, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: axeDamage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070829, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: slashDamage
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 918249177901070832, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Name
