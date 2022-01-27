@@ -108371,7 +108371,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -108597,7 +108597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bfd26efb4759b40951a4862be8c112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimer: 30
+  waveTimer: 20
   boar: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
   enemyPortals:
   - {fileID: 60111951}
@@ -108611,13 +108611,13 @@ MonoBehaviour:
   activeSpawner: []
   waves:
   - name: wave1
-    numberOfFrogs: 20
+    numberOfFrogs: 10
   - name: wave2
-    numberOfFrogs: 30
+    numberOfFrogs: 100
   - name: wave3
-    numberOfFrogs: 50
+    numberOfFrogs: 100
   - name: wave4
-    numberOfFrogs: 80
+    numberOfFrogs: 100
 --- !u!4 &1394369162
 Transform:
   m_ObjectHideFlags: 0
@@ -108883,7 +108883,7 @@ PrefabInstance:
       objectReference: {fileID: 95570160}
     - target: {fileID: 4140164027821640319, guid: 8ae76f59dd34cc741bd7c24aa7d70dcb, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4871112351295708651, guid: 8ae76f59dd34cc741bd7c24aa7d70dcb, type: 3}
       propertyPath: m_LocalPosition.x
