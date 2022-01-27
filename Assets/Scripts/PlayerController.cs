@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     [SerializeField] private Transform shadow;
     private SkeletonAnimation skeletonAnimation;
-
-
+    private bool isAttacking; //from playerAction script
     // Player stats
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxHealth;
@@ -26,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        //spriteRenderer = transform.GetComponent<SpriteRenderer>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         currentHealth = maxHealth;
 
@@ -36,7 +34,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //playerFaceDirection();
 
     }
 
@@ -45,41 +42,24 @@ public class PlayerController : MonoBehaviour
         move();
     }
 
-    //Handles the players facing direction (attack up or down change animation acordingly)
-    void playerFaceDirection()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal"); //when moving right movement.x = 1 and left movement.x = -1
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        if (movement.x > 0)
-        {
-            spriteRenderer.flipX = false;
-            shadow.localPosition = new Vector2(-0.02f, 0);
-        }
-        if (movement.x < 0)
-        {
-            spriteRenderer.flipX = true;
-            shadow.localPosition = new Vector2(0.02f, 0);
-        }
-    }
-
     //Handles the players movement
     private void move()
     {
         //Debug.Log(movement.y);
+        isAttacking = GetComponent<PlayerAction>().isAttacking;
 
         movement.x = Input.GetAxisRaw("Horizontal"); //when moving right movement.x = 1 and left movement.x = -1
         movement.y = Input.GetAxisRaw("Vertical");
         playerRB.MovePosition(playerRB.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
-        if(movement.normalized == Vector2.zero)
+        if(!isAttacking && movement.normalized == Vector2.zero)
         {
             skeletonAnimation.AnimationName = "Idle";
         }
-        if (!(movement.normalized == Vector2.zero) && movement.y <= 0)
+        if (!isAttacking && !(movement.normalized == Vector2.zero) && movement.y <= 0)
         {
             skeletonAnimation.AnimationName = "Run";
         }
-        else if(!(movement.normalized == Vector2.zero))
+        else if(!isAttacking && !(movement.normalized == Vector2.zero))
         {
             skeletonAnimation.AnimationName = "RunB";
 

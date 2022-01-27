@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class PlayerAction : MonoBehaviour
 {
-
+    //Connected objects
     [SerializeField] private Transform attackPoint;
+    private SkeletonAnimation skeletonAnimation;
+    private Vector3 difference;
+    public bool isAttacking;
 
     //Slash attack related
     [SerializeField] private GameObject slashPrefab;
@@ -28,16 +32,24 @@ public class PlayerAction : MonoBehaviour
     void Start()
     {
         canSlash = true;
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        isAttacking = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        aim();
+
         //slash attack
         if (Input.GetMouseButtonDown(0) && canSlash)
         {
             StartCoroutine(slashCooldownTimer());
             canSlash = false;
+            isAttacking = true;
+            StartCoroutine(isAttackingTimer());
+            playerFaceDirection();
             slashAttack(); //Slash Attack
         }
 
@@ -45,6 +57,9 @@ public class PlayerAction : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !isThrown) 
         {
             isThrown = true;
+            isAttacking = true;
+            StartCoroutine(isAttackingTimer());
+            playerFaceDirection();
             if (!canCallBack)
             {
                 targetPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0); //where mouse is when clicked
@@ -57,12 +72,32 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    private void slashAttack()
+    //Handle aiming, shall follow where mousepointer is
+    private void aim()
     {
-        //Handle aiming, shall follow where mousepointer is
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.transform.position;
+        difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         attackPoint.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
+
+    //Handles the players facing direction when attacking (attack up or down change animation acordingly)
+    void playerFaceDirection()
+    {
+        Vector3 cameraPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.Log(cameraPoint.y - transform.position.y);
+        if (cameraPoint.y-transform.position.y <= 0)
+        {
+            skeletonAnimation.AnimationName = "Run";
+        }
+        else
+        {
+            skeletonAnimation.AnimationName = "RunB";
+
+        }
+    }
+    private void slashAttack()
+    {
+
         // Handle Slash projection spawn
         GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
         slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
@@ -89,7 +124,6 @@ public class PlayerAction : MonoBehaviour
         axe.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
     }
 
-    // TODO AXE IS CURRENTLY DEALING DAMAGE MULTIPLE TIMES. AXE STOPS WHEN REACHED TARGET OR MAX RANGE
     private void axeThrow()
     {
         // Handle axe movement and booleans
@@ -120,6 +154,13 @@ public class PlayerAction : MonoBehaviour
             canCallBack = false;
             Destroy(axe);
         }
+    }
+
+    //handles timer for boolean isAttacking
+    private IEnumerator isAttackingTimer()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isAttacking = false;
     }
 
 }
