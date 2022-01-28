@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
 
     // Player stats
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxHealth;
-    private float currentHealth;
+    public float maxHealth;
+    [HideInInspector] public float currentHealth;
 
     /* Experience and level related
     private int level;
