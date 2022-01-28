@@ -192,7 +192,7 @@ SpriteRenderer:
   m_Size: {x: 0.6875, y: 0.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &918249177901070832
@@ -262,7 +262,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 27ca411ee1860d74a84838f8c7ed41c1, type: 2}
+  - {fileID: 2100000, guid: bf3ec2a48612d414ea1be8aa6471e0fb, type: 2}
+  - {fileID: 2100000, guid: 91bcf3b9791bf2640a0cc92de814bcb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -296,8 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 96e93932c6c20af46b669b47ec0e8c11, type: 2}
-  initialSkinName: Original
+  skeletonDataAsset: {fileID: 11400000, guid: 9769b8dcd917b1f4b902e51564203c28, type: 2}
+  initialSkinName: Red
   initialFlipX: 0
   initialFlipY: 0
   updateWhenInvisible: 3
@@ -377,7 +378,6 @@ MonoBehaviour:
   axePrefab: {fileID: 2909875613846711828, guid: 456c79b979541a24a9e93a5711d79d1b, type: 3}
   axeDamage: 50
   projectileSpeed: 10
-  axeMaxRange: 8
 --- !u!70 &1494651346
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

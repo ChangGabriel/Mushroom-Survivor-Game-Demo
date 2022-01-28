@@ -108812,6 +108812,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushGobPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 918249177901070833, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: initialSkinName
+      value: Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 918249177901070833, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9769b8dcd917b1f4b902e51564203c28, type: 2}
+    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf3ec2a48612d414ea1be8aa6471e0fb, type: 2}
+    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91bcf3b9791bf2640a0cc92de814bcb4, type: 2}
     - target: {fileID: 918249177901070835, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Mesh
       value: 
