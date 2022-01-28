@@ -108597,8 +108597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bfd26efb4759b40951a4862be8c112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimer: 20
-  boar: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
+  waveTimer: 60
+  frog: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
   enemyPortals:
   - {fileID: 60111951}
   - {fileID: 356512690}
@@ -108611,13 +108611,13 @@ MonoBehaviour:
   activeSpawner: []
   waves:
   - name: wave1
-    numberOfFrogs: 10
+    numberOfFrogs: 30
   - name: wave2
-    numberOfFrogs: 100
+    numberOfFrogs: 40
   - name: wave3
-    numberOfFrogs: 100
+    numberOfFrogs: 50
   - name: wave4
-    numberOfFrogs: 100
+    numberOfFrogs: 70
 --- !u!4 &1394369162
 Transform:
   m_ObjectHideFlags: 0

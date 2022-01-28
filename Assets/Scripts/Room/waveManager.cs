@@ -13,7 +13,7 @@ public class waveManager : MonoBehaviour
     public class Wave
     {
         public string name;
-        public int numberOfFrogs; //number of boars to spawn
+        public int numberOfFrogs; //number of frogs to spawn
     }
 
     // Wave and enemy related
@@ -22,10 +22,10 @@ public class waveManager : MonoBehaviour
     private int numberOfWaves;
     [SerializeField] private float waveTimer;
     private bool canSpawnWave;
-
+    private bool waveOver;
+    private GameObject waveGO;
     // Enemy references
-    //[SerializeField] private GameObject listOfEnemies;
-    public Transform boar;
+    public Transform frog;
     public GameObject[] enemyPortals;
     public List<GameObject> activeSpawner;
     public Wave[] waves;
@@ -85,15 +85,15 @@ public class waveManager : MonoBehaviour
         {
             OnStartingEnemiesDead?.Invoke(this, EventArgs.Empty); 
         }
-
         //start spawning waves from list and also check if wave is over to start next
-        if (state == State.WaveActive && canSpawnWave)      
+        if (state == State.WaveActive && (canSpawnWave || waveOver))      
         {
             if (!isBattleOver()) //check if we have reached our number of waves for the room
             {
                 StartCoroutine(spawnWave(waves[waveIndex]));
                 StartCoroutine(waveSpawnTimer());
                 canSpawnWave = false;
+                waveOver = false;
                 waveIndex++;
             }
         }
@@ -116,20 +116,16 @@ public class waveManager : MonoBehaviour
         return true;
     }
 
-    //handles check if wave is over
-    private bool isWaveOver()
-    {
-        if (numberOfEnemies > 0)
-        {
-            return false;
-        }
-        numberOfEnemies = 0;
-        return true;
-
-    }
     public IEnumerator waveSpawnTimer()
     {
-        yield return new WaitForSeconds(waveTimer);
+        for (int i = 0; i < waveTimer; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            if (waveOver) // Stop timer if wave is defeated early
+            {
+                yield break;
+            }
+        }
         canSpawnWave = true;
     }
 
@@ -137,26 +133,32 @@ public class waveManager : MonoBehaviour
     private void spawnEnemy(Transform _enemy, GameObject parent)
     {
         Transform spawnPoint = activeSpawner[UnityEngine.Random.Range(0, activeSpawner.Count)].transform;
-        var enemy = Instantiate(_enemy, spawnPoint.position + (Vector3)UnityEngine.Random.insideUnitCircle*1.5f, Quaternion.identity);
+        var enemy = Instantiate(_enemy, spawnPoint.position, Quaternion.identity); // + (Vector3)UnityEngine.Random.insideUnitCircle*1.5f if we want to spawn within a radius
         enemy.transform.parent = parent.transform;
     }
 
     //handles the wave spawning. Sets the numberOfEnemies for the current wave and also creates wave parent gameObject for enemies to spawn in.
     private IEnumerator spawnWave(Wave _wave)
     {
-        numberOfEnemies = _wave.numberOfFrogs;
         var waveGO = new GameObject();
         waveGO.transform.parent = gameObject.transform;
         waveGO.name = _wave.name;
 
         for (int i = 0; i < _wave.numberOfFrogs; i++)
         {
-            spawnEnemy(boar, waveGO);
-            yield return new WaitForSeconds(0.2f);
+            spawnEnemy(frog, waveGO);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1.0f)); // Time between each spawn 
         }
+        while(waveGO.transform.childCount > 0) // check if wave is done i.e. all enemies in the wave is dead
+        {
+            yield return new WaitForSeconds(1f); // check every second
+        }
+        yield return new WaitForSeconds(2f); //time to wait before next wave
+        Destroy(waveGO);
+        waveOver = true;
+
         yield break;
     }
-
 
     // handles spawners outside of level bounds. 
     public void toggleSpawner(bool outsideBounds, GameObject spawner)
