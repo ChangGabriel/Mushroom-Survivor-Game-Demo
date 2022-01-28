@@ -1,0 +1,327 @@
+
+mush Gob 1.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+black-line/body
+  rotate: true
+  xy: 1611, 1185
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+red/body
+  rotate: true
+  xy: 1611, 1185
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+black-line/ear-L
+  rotate: false
+  xy: 1212, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+red/ear-L
+  rotate: false
+  xy: 1212, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+black-line/ear-R
+  rotate: false
+  xy: 2, 1483
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+red/ear-R
+  rotate: false
+  xy: 2, 1483
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+black-line/eye-L
+  rotate: false
+  xy: 575, 1456
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+red/eye-L
+  rotate: false
+  xy: 575, 1456
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+black-line/eye-R
+  rotate: false
+  xy: 1013, 1345
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+red/eye-R
+  rotate: false
+  xy: 1013, 1345
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+black-line/head
+  rotate: true
+  xy: 647, 700
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+red/head
+  rotate: true
+  xy: 647, 700
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+black-line/leg-L
+  rotate: true
+  xy: 216, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+red/leg-L
+  rotate: true
+  xy: 216, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+black-line/leg-R
+  rotate: true
+  xy: 644, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+red/leg-R
+  rotate: true
+  xy: 644, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob01/body
+  rotate: true
+  xy: 1232, 1185
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+mush-gob02/body
+  rotate: true
+  xy: 1232, 1185
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+no-tex/body
+  rotate: true
+  xy: 1232, 1185
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+mush-gob01/ear-L
+  rotate: false
+  xy: 858, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob02/ear-L
+  rotate: false
+  xy: 858, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+no-tex/ear-L
+  rotate: false
+  xy: 858, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob01/ear-R
+  rotate: false
+  xy: 1566, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob02/ear-R
+  rotate: false
+  xy: 1566, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+no-tex/ear-R
+  rotate: false
+  xy: 1566, 1560
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob01/eye-L
+  rotate: false
+  xy: 356, 1456
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob02/eye-L
+  rotate: false
+  xy: 356, 1456
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+no-tex/eye-L
+  rotate: false
+  xy: 356, 1456
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob01/eye-R
+  rotate: false
+  xy: 794, 1345
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob02/eye-R
+  rotate: false
+  xy: 794, 1345
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+no-tex/eye-R
+  rotate: false
+  xy: 794, 1345
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob01/hat
+  rotate: true
+  xy: 1153, 2
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+mush-gob01/head
+  rotate: false
+  xy: 2, 950
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+mush-gob02/head
+  rotate: false
+  xy: 2, 950
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+no-tex/head
+  rotate: false
+  xy: 2, 950
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+mush-gob01/leg-L
+  rotate: true
+  xy: 2, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob02/leg-L
+  rotate: true
+  xy: 2, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+no-tex/leg-L
+  rotate: true
+  xy: 2, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob01/leg-R
+  rotate: true
+  xy: 430, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob02/leg-R
+  rotate: true
+  xy: 430, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+no-tex/leg-R
+  rotate: true
+  xy: 430, 1671
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+
+mush Gob 12.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+black-line/hat
+  rotate: true
+  xy: 1185, 850
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+mush-gob02/hat
+  rotate: false
+  xy: 850, 2
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+no-tex/hat
+  rotate: false
+  xy: 2, 1185
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+red/hat
+  rotate: true
+  xy: 2, 2
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
