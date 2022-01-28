@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Frog
   maxHealth: 100
-  attackCooldown: 0.7
+  attackCooldown: 0.8
   canBeKnockedBack: 0
   isStunned: 0
   deathEffect: {fileID: 6485420372967819292, guid: e018f19b68826d046bce0555fb6c4ee4, type: 3}
