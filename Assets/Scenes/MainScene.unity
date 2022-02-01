@@ -109193,6 +109193,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushGobPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8275b8029d3f31488e204e21df1dd17, type: 2}
+    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b3373f5aca5cf0499ed77b677880125, type: 2}
     - target: {fileID: 918249177901070835, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Mesh
       value: 

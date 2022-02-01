@@ -1,0 +1,222 @@
+
+mush Gob 1.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light/anger
+  rotate: false
+  xy: 858, 1564
+  size: 551, 186
+  orig: 551, 186
+  offset: 0, 0
+  index: -1
+light/body
+  rotate: true
+  xy: 859, 647
+  size: 375, 379
+  orig: 375, 379
+  offset: 0, 0
+  index: -1
+light/cape
+  rotate: false
+  xy: 2, 920
+  size: 476, 350
+  orig: 476, 350
+  offset: 0, 0
+  index: -1
+light/cape-B
+  rotate: false
+  xy: 878, 1024
+  size: 476, 350
+  orig: 476, 350
+  offset: 0, 0
+  index: -1
+light/ear-L
+  rotate: false
+  xy: 356, 1487
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+light/ear-R
+  rotate: false
+  xy: 1418, 1349
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+light/eye-L
+  rotate: false
+  xy: 2, 1272
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+light/eye-R
+  rotate: false
+  xy: 659, 1161
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+light/head
+  rotate: true
+  xy: 647, 2
+  size: 643, 508
+  orig: 643, 508
+  offset: 0, 0
+  index: -1
+mush-gob01/body
+  rotate: true
+  xy: 1356, 974
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+mush-gob01/ear-L
+  rotate: false
+  xy: 1411, 1564
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob01/ear-R
+  rotate: false
+  xy: 710, 1376
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+mush-gob01/eye-L
+  rotate: false
+  xy: 1765, 1537
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob01/eye-R
+  rotate: false
+  xy: 221, 1272
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+mush-gob01/head
+  rotate: false
+  xy: 1240, 468
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+mush-gob01/leg-L
+  rotate: true
+  xy: 2, 1675
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+mush-gob01/leg-R
+  rotate: true
+  xy: 430, 1675
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+red/body
+  rotate: true
+  xy: 480, 786
+  size: 373, 377
+  orig: 373, 377
+  offset: 0, 0
+  index: -1
+red/ear-L
+  rotate: false
+  xy: 2, 1487
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+red/ear-R
+  rotate: false
+  xy: 1064, 1376
+  size: 352, 186
+  orig: 352, 186
+  offset: 0, 0
+  index: -1
+red/eye-L
+  rotate: false
+  xy: 1772, 1322
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+red/eye-R
+  rotate: false
+  xy: 440, 1272
+  size: 217, 213
+  orig: 217, 213
+  offset: 0, 0
+  index: -1
+red/head
+  rotate: false
+  xy: 2, 280
+  size: 643, 504
+  orig: 643, 504
+  offset: 0, 0
+  index: -1
+red/leg-L
+  rotate: true
+  xy: 216, 1675
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+light/leg-L
+  rotate: true
+  xy: 216, 1675
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+red/leg-R
+  rotate: true
+  xy: 644, 1675
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+light/leg-R
+  rotate: true
+  xy: 644, 1675
+  size: 75, 212
+  orig: 75, 212
+  offset: 0, 0
+  index: -1
+
+mush Gob 12.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light/hat
+  rotate: true
+  xy: 1185, 515
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+mush-gob01/hat
+  rotate: false
+  xy: 2, 850
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1
+red/hat
+  rotate: false
+  xy: 2, 2
+  size: 1181, 846
+  orig: 1181, 846
+  offset: 0, 0
+  index: -1

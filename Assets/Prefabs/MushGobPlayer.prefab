@@ -557,8 +557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 9769b8dcd917b1f4b902e51564203c28, type: 2}
-  initialSkinName: Red
+  skeletonDataAsset: {fileID: 11400000, guid: 8aeecca2a1f046240b11623fb2a5ea7d, type: 2}
+  initialSkinName: Light
   initialFlipX: 0
   initialFlipY: 0
   updateWhenInvisible: 3
