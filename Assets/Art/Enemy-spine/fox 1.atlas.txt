@@ -1,0 +1,97 @@
+
+fox 1.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2, 1059
+  size: 1126, 962
+  orig: 1126, 962
+  offset: 0, 0
+  index: -1
+ear-L
+  rotate: false
+  xy: 749, 54
+  size: 199, 467
+  orig: 199, 467
+  offset: 0, 0
+  index: -1
+ear-R
+  rotate: false
+  xy: 749, 523
+  size: 230, 534
+  orig: 230, 534
+  offset: 0, 0
+  index: -1
+eye
+  rotate: true
+  xy: 981, 861
+  size: 196, 125
+  orig: 196, 125
+  offset: 0, 0
+  index: -1
+eyebrow
+  rotate: false
+  xy: 156, 26
+  size: 114, 74
+  orig: 114, 74
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 1130, 1044
+  size: 977, 760
+  orig: 977, 760
+  offset: 0, 0
+  index: -1
+hind
+  rotate: true
+  xy: 981, 394
+  size: 465, 654
+  orig: 465, 654
+  offset: 0, 0
+  index: -1
+hind-leg-B
+  rotate: false
+  xy: 329, 39
+  size: 124, 367
+  orig: 124, 367
+  offset: 0, 0
+  index: -1
+hind-leg-F
+  rotate: false
+  xy: 455, 63
+  size: 148, 343
+  orig: 148, 343
+  offset: 0, 0
+  index: -1
+leg-B
+  rotate: true
+  xy: 2, 102
+  size: 148, 319
+  orig: 148, 319
+  offset: 0, 0
+  index: -1
+leg-F
+  rotate: true
+  xy: 2, 252
+  size: 154, 325
+  orig: 154, 325
+  offset: 0, 0
+  index: -1
+tail
+  rotate: false
+  xy: 2, 408
+  size: 745, 649
+  orig: 745, 649
+  offset: 0, 0
+  index: -1
+whiskers
+  rotate: false
+  xy: 2, 2
+  size: 152, 98
+  orig: 152, 98
+  offset: 0, 0
+  index: -1
