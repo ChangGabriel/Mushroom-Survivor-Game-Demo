@@ -108975,7 +108975,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveTimer: 60
-  frog: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
+  spawnFrequency: 1
+  enemy1: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
+  enemy2: {fileID: 1520561587589445828, guid: 6485094cb96c9df4ab3beb55d421f819, type: 3}
+  enemy3: {fileID: 0}
   enemyPortals:
   - {fileID: 60111951}
   - {fileID: 356512690}
@@ -108988,13 +108991,21 @@ MonoBehaviour:
   activeSpawner: []
   waves:
   - name: wave1
-    numberOfFrogs: 30
+    nrEnemy1: 30
+    nrEnemy2: 10
+    nrEnemy3: 0
   - name: wave2
-    numberOfFrogs: 40
+    nrEnemy1: 40
+    nrEnemy2: 15
+    nrEnemy3: 0
   - name: wave3
-    numberOfFrogs: 50
+    nrEnemy1: 50
+    nrEnemy2: 20
+    nrEnemy3: 0
   - name: wave4
-    numberOfFrogs: 70
+    nrEnemy1: 60
+    nrEnemy2: 30
+    nrEnemy3: 0
 --- !u!4 &1394369162
 Transform:
   m_ObjectHideFlags: 0
@@ -109192,6 +109203,10 @@ PrefabInstance:
     - target: {fileID: 918249177901070832, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Name
       value: MushGobPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 918249177901070832, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Materials.Array.size

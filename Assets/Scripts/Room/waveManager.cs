@@ -13,7 +13,10 @@ public class waveManager : MonoBehaviour
     public class Wave
     {
         public string name;
-        public int numberOfFrogs; //number of frogs to spawn
+        public int nrEnemy1; //number of enemy 1 to spawn
+        public int nrEnemy2; //number of enemy 1 to spawn
+        public int nrEnemy3; //number of enemy 1 to spawn
+
     }
 
     // Wave and enemy related
@@ -23,9 +26,11 @@ public class waveManager : MonoBehaviour
     [SerializeField] private float waveTimer;
     private bool canSpawnWave;
     private bool waveOver;
-    private GameObject waveGO;
+    [SerializeField] private float spawnFrequency; //total spawning time of 1 wave is spawnFrequency * maxNumberEnemies
     // Enemy references
-    public Transform frog;
+    public Transform enemy1;
+    public Transform enemy2;
+    public Transform enemy3;
     public GameObject[] enemyPortals;
     public List<GameObject> activeSpawner;
     public Wave[] waves;
@@ -144,12 +149,42 @@ public class waveManager : MonoBehaviour
         waveGO.transform.parent = gameObject.transform;
         waveGO.name = _wave.name;
 
-        for (int i = 0; i < _wave.numberOfFrogs; i++)
+        float timeSinceWaveStart = 1;
+        int maxNumberEnemies = Mathf.Max(_wave.nrEnemy1, Mathf.Max(_wave.nrEnemy2, _wave.nrEnemy3));
+        int spawnFreq1 = 0;
+        int spawnFreq2 = 0;
+        int spawnFreq3 = 0;
+        if (_wave.nrEnemy1 != 0)
         {
-            spawnEnemy(frog, waveGO);
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1.0f)); // Time between each spawn 
+            spawnFreq1 = Mathf.FloorToInt(maxNumberEnemies / _wave.nrEnemy1); // Calculate the spawning frequency for enemy 1
         }
-        while(waveGO.transform.childCount > 0) // check if wave is done i.e. all enemies in the wave is dead
+        if (_wave.nrEnemy2 != 0)
+        {
+            spawnFreq2 = Mathf.FloorToInt(maxNumberEnemies / _wave.nrEnemy2);
+        }
+        if (_wave.nrEnemy3 != 0)
+        {
+            spawnFreq3 = Mathf.FloorToInt(maxNumberEnemies / _wave.nrEnemy3);
+        }
+
+        for (int i = 0; i < maxNumberEnemies; i++) //spawn enemies according to frequency
+        {
+            if(timeSinceWaveStart % spawnFreq1 == 0)
+            {
+                spawnEnemy(enemy1, waveGO);
+            }
+            if (timeSinceWaveStart % spawnFreq2 == 0)
+            {
+                spawnEnemy(enemy2, waveGO);
+            }
+            if (timeSinceWaveStart % spawnFreq3 == 0)
+            {
+                spawnEnemy(enemy3, waveGO);
+            }
+            yield return new WaitForSeconds(0.5f); // Time between each spawn, change the number if you want to change the spawning speed
+            timeSinceWaveStart += 1.0f;
+        }
+        while (waveGO.transform.childCount > 0) // check if wave is done i.e. all enemies in the wave is dead
         {
             yield return new WaitForSeconds(1f); // check every second
         }

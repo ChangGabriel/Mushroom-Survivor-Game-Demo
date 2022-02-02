@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, target.position) <= aggroDistance && !(Vector2.Distance(transform.position, target.position) <= attackRange))
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-            skeletonAnimation.AnimationName = "jump";
+            skeletonAnimation.AnimationName = "run";
         }
         else
         {
