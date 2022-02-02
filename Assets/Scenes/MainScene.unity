@@ -108398,7 +108398,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -108991,8 +108991,8 @@ MonoBehaviour:
   activeSpawner: []
   waves:
   - name: wave1
-    nrEnemy1: 30
-    nrEnemy2: 10
+    nrEnemy1: 0
+    nrEnemy2: 2
     nrEnemy3: 0
   - name: wave2
     nrEnemy1: 40
