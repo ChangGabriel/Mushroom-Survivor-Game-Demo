@@ -228,6 +228,6 @@ MonoBehaviour:
   damageCanvas: {fileID: 702463089465384646, guid: 45ea39b0c9c637c44b2aeefdf12264c7, type: 3}
   target: {fileID: 0}
   aggroDistance: 100
-  attackRange: 2
+  attackRange: 0.1
   foxDamage: 10
   foxMoveSpeed: 3
