@@ -1,0 +1,124 @@
+
+frog02.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+green/eyeL
+  rotate: false
+  xy: 859, 497
+  size: 69, 139
+  orig: 69, 139
+  offset: 0, 0
+  index: -1
+green/eyeR
+  rotate: false
+  xy: 988, 1024
+  size: 78, 150
+  orig: 78, 150
+  offset: 0, 0
+  index: -1
+green/head
+  rotate: true
+  xy: 1088, 819
+  size: 1080, 796
+  orig: 1080, 796
+  offset: 0, 0
+  index: -1
+green/hind
+  rotate: true
+  xy: 988, 425
+  size: 392, 568
+  orig: 392, 568
+  offset: 0, 0
+  index: -1
+green/jaw
+  rotate: false
+  xy: 2, 1176
+  size: 1084, 723
+  orig: 1084, 723
+  offset: 0, 0
+  index: -1
+green/legHind
+  rotate: false
+  xy: 727, 907
+  size: 259, 267
+  orig: 259, 267
+  offset: 0, 0
+  index: -1
+green/legL
+  rotate: false
+  xy: 727, 310
+  size: 130, 326
+  orig: 130, 326
+  offset: 0, 0
+  index: -1
+green/legR
+  rotate: false
+  xy: 727, 2
+  size: 124, 306
+  orig: 124, 306
+  offset: 0, 0
+  index: -1
+original/eyeL
+  rotate: false
+  xy: 853, 152
+  size: 69, 139
+  orig: 69, 139
+  offset: 0, 0
+  index: -1
+original/eyeR
+  rotate: false
+  xy: 988, 872
+  size: 78, 150
+  orig: 78, 150
+  offset: 0, 0
+  index: -1
+original/hind
+  rotate: false
+  xy: 1558, 249
+  size: 392, 568
+  orig: 392, 568
+  offset: 0, 0
+  index: -1
+original/jaw
+  rotate: true
+  xy: 2, 90
+  size: 1084, 723
+  orig: 1084, 723
+  offset: 0, 0
+  index: -1
+original/legHind
+  rotate: false
+  xy: 727, 638
+  size: 259, 267
+  orig: 259, 267
+  offset: 0, 0
+  index: -1
+original/legL
+  rotate: true
+  xy: 859, 293
+  size: 130, 326
+  orig: 130, 326
+  offset: 0, 0
+  index: -1
+original/legR
+  rotate: false
+  xy: 1187, 117
+  size: 124, 306
+  orig: 124, 306
+  offset: 0, 0
+  index: -1
+
+frog022.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+original/head
+  rotate: false
+  xy: 2, 2
+  size: 1080, 796
+  orig: 1080, 796
+  offset: 0, 0
+  index: -1
