@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6521388665632397708}
   - component: {fileID: 6521388665632397709}
   - component: {fileID: 6521388665632397710}
+  - component: {fileID: -6166454329207486277}
   m_Layer: 7
   m_Name: Frog
   m_TagString: Enemy
@@ -184,6 +185,17 @@ MonoBehaviour:
   attackRange: 0.1
   frogDamage: 10
   frogMoveSpeed: 2
+--- !u!210 &-6166454329207486277
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521388665632397711}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
 --- !u!1 &6521388666314723854
 GameObject:
   m_ObjectHideFlags: 0
