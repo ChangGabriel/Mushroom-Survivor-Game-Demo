@@ -9,6 +9,7 @@ public class Slash : MonoBehaviour
     [SerializeField] private float damageRangeProcentage;
     private Collider2D enemyHit;
     [SerializeField] private float lifetime;
+    public Vector3 playerPos;
 
 
     private void Start()
@@ -30,7 +31,7 @@ public class Slash : MonoBehaviour
             //Knockback and damage
             if (other.GetComponent<Enemy>().canBeKnockedBack)
             {
-                Vector2 knockBackDir = (other.transform.position - transform.parent.position).normalized; //direction of the slash
+                Vector2 knockBackDir = (other.transform.position - playerPos).normalized; //direction of the slash
                 other.GetComponent<Enemy>().knockback(knockBackDir);
             }
             damageRange = Random.Range((damage - damage * damageRangeProcentage), (damage + damage * damageRangeProcentage));

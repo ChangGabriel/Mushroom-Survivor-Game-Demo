@@ -26,11 +26,18 @@ public class PlayerAction : MonoBehaviour
     private bool isThrown;
     private bool canCallBack;
 
+    //Bomb Spell related
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private float bombDamage;
+    [SerializeField] private float bombCooldown;
+    private bool canBomb;
+
 
     // Start is called before the first frame update
     void Start()
     {
         canSlash = true;
+        canBomb = true;
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         isAttacking = false;
 
@@ -52,6 +59,16 @@ public class PlayerAction : MonoBehaviour
             slashAttack(); //Slash Attack
         }
 
+        //Bomb Spell
+        if(Input.GetKeyDown("e") && canBomb)
+        {
+            StartCoroutine(bombCooldownTimer());
+            canBomb = false;
+            isAttacking = true;
+            StartCoroutine(isAttackingTimer());
+            playerFaceDirection();
+            bombAttack();
+        }
         //Axe Throw
         if (Input.GetMouseButtonDown(1) && !isThrown) 
         {
@@ -99,15 +116,34 @@ public class PlayerAction : MonoBehaviour
         // Handle Slash projection spawn
         GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
         slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
-        slashSpawn.transform.parent = attackPoint;
+        slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
 
     }
 
-    //handles cooldown for hurt boolean
+    //handles cooldown for Slash attack
     private IEnumerator slashCooldownTimer()
     {
         yield return new WaitForSeconds(slashCooldown);
         canSlash = true;
+    }
+
+    private void bombAttack()
+    {
+
+        // Handle Bomb spell spawn
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0;
+        GameObject bombSpawn = Instantiate(bombPrefab, pos, Quaternion.identity);
+        bombSpawn.GetComponent<BombSpell>().setBombDamage(slashDamage);
+        bombSpawn.GetComponent<BombSpell>().playerPos = attackPoint.transform.position;
+
+    }
+
+    //handles cooldown for bomb spell
+    private IEnumerator bombCooldownTimer()
+    {
+        yield return new WaitForSeconds(bombCooldown);
+        canBomb = true;
     }
 
     private void spawnAxe()
