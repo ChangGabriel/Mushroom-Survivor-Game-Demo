@@ -111,7 +111,7 @@ TextureImporter:
       213: -3046288822633636971
     second: Fire Elemental Sprite Sheet_35
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -131,6 +131,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -140,8 +142,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -162,11 +164,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -177,7 +183,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -188,7 +195,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -199,7 +207,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -210,7 +219,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -221,6 +231,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -990,6 +1001,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Fire Elemental Sprite Sheet_30: 8921179085377346251
+      Fire Elemental Sprite Sheet_13: 7714370920762840065
+      Fire Elemental Sprite Sheet_19: 5100754567994437069
+      Fire Elemental Sprite Sheet_22: 5652520063778318129
+      Fire Elemental Sprite Sheet_4: 5997871957137798190
+      Fire Elemental Sprite Sheet_16: 4422176983933243290
+      Fire Elemental Sprite Sheet_33: -1133019688869836574
+      Fire Elemental Sprite Sheet_34: -7038891953868030266
+      Fire Elemental Sprite Sheet_0: 7719672523876620160
+      Fire Elemental Sprite Sheet_35: -3046288822633636971
+      Fire Elemental Sprite Sheet_18: 1035042394483733418
+      Fire Elemental Sprite Sheet_9: -5097023692966084428
+      Fire Elemental Sprite Sheet_14: -1426262386061618818
+      Fire Elemental Sprite Sheet_20: -3719576297608814950
+      Fire Elemental Sprite Sheet_28: 8484668060928685476
+      Fire Elemental Sprite Sheet_12: -5355334954806013609
+      Fire Elemental Sprite Sheet_29: 7002092007773034351
+      Fire Elemental Sprite Sheet_10: -4973071976785375461
+      Fire Elemental Sprite Sheet_21: -5818421767679055250
+      Fire Elemental Sprite Sheet_15: 7675940559515937458
+      Fire Elemental Sprite Sheet_23: -5921171957966040123
+      Fire Elemental Sprite Sheet_25: 7702172858344032089
+      Fire Elemental Sprite Sheet_6: 1471403724288097037
+      Fire Elemental Sprite Sheet_3: 4319025773043649059
+      Fire Elemental Sprite Sheet_27: 7229764938880634285
+      Fire Elemental Sprite Sheet_31: 6492115365051326054
+      Fire Elemental Sprite Sheet_26: 3090884903891401012
+      Fire Elemental Sprite Sheet_24: 2795198299889444975
+      Fire Elemental Sprite Sheet_1: -3007262347129105222
+      Fire Elemental Sprite Sheet_32: -2646907026471128912
+      Fire Elemental Sprite Sheet_5: -3415840893481004182
+      Fire Elemental Sprite Sheet_17: -3291860103965639833
+      Fire Elemental Sprite Sheet_11: -6107387754401404400
+      Fire Elemental Sprite Sheet_2: -690133910111190587
+      Fire Elemental Sprite Sheet_8: 1231758973442891275
+      Fire Elemental Sprite Sheet_7: 1636615596247957949
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
