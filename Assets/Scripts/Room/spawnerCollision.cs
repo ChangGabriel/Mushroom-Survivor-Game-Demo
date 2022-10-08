@@ -5,6 +5,7 @@ using UnityEngine;
 public class spawnerCollision : MonoBehaviour
 {
     public bool outsideBounds;
+    [SerializeField] private GameObject roomManager;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class spawnerCollision : MonoBehaviour
             {
                 outsideBounds = false;
             }
-            transform.parent.GetComponentInParent<waveManager>().toggleSpawner(outsideBounds, this.gameObject);
+            roomManager.GetComponentInParent<waveManager>().toggleSpawner(outsideBounds, this.gameObject);
         }
     }
 }
