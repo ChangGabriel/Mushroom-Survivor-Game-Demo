@@ -35,7 +35,7 @@ public class LevelUpSystem : MonoBehaviour
         currentExp += exp;
         requiredExp = calculateRequiredExp(level);
 
-        Debug.Log("Exp: " + currentExp + " / " + "Req: " + requiredExp);
+        //Debug.Log("Exp: " + currentExp + " / " + "Req: " + requiredExp);
         if (currentExp >= requiredExp)
         {
             LevelUp();
