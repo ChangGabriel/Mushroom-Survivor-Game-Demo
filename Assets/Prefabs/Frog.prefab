@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Frog
-  maxHealth: 100
+  maxHealth: 110
   attackCooldown: 0.8
   ExpValue: 0.5
   canBeKnockedBack: 0

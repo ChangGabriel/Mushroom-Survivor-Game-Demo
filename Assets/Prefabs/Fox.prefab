@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Fox
-  maxHealth: 60
+  maxHealth: 80
   attackCooldown: 0.8
   ExpValue: 1
   canBeKnockedBack: 0
