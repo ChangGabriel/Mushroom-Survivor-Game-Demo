@@ -135,7 +135,6 @@ public class PlayerAction : MonoBehaviour
         pos.z = 0;
         GameObject bombSpawn = Instantiate(bombPrefab, pos, Quaternion.identity);
         bombSpawn.GetComponent<BombSpell>().setBombDamage(slashDamage);
-        bombSpawn.GetComponent<BombSpell>().playerPos = attackPoint.transform.position;
 
     }
 

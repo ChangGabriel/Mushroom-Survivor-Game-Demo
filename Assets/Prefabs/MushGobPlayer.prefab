@@ -666,6 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  levelUpFXPrefab: {fileID: 4212490473094411053, guid: aa2ba34aeabb2084d88a104f9dcfa13f, type: 3}
 --- !u!70 &1494651346
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class BombSpell : MonoBehaviour
     [SerializeField] private float stunDuration;
     private Collider2D enemyHit;
     [SerializeField] private float lifetime;
-    public Vector3 playerPos;
 
 
     // Start is called before the first frame update

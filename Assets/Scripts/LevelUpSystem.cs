@@ -10,6 +10,8 @@ public class LevelUpSystem : MonoBehaviour
     private PlayerAction playerAction;
     private PlayerController playerController;
 
+    [SerializeField] private GameObject levelUpFXPrefab;
+
     private void Start()
     {
         playerAction = GetComponent<PlayerAction>();
@@ -45,12 +47,12 @@ public class LevelUpSystem : MonoBehaviour
         //Modify stats
         level++;
 
-
-
         //Modify Exp values
         currentExp -= requiredExp;
-
         Debug.Log("Level:" + level);
+        //Spawn Levelup FX
+        GameObject levelupFX = Instantiate(levelUpFXPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+        levelupFX.transform.parent = this.transform;
 
     }
 
