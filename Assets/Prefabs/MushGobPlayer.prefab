@@ -646,7 +646,7 @@ MonoBehaviour:
   isAttacking: 0
   slashPrefab: {fileID: 7085987466133267681, guid: 8208c5a1e006de64993d1a7c14b1d28a, type: 3}
   slashDamage: 40
-  slashCooldown: 0.4
+  slashCooldown: 0.8
   axePrefab: {fileID: 2909875613846711828, guid: 456c79b979541a24a9e93a5711d79d1b, type: 3}
   axeDamage: 50
   projectileSpeed: 10

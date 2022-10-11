@@ -113,10 +113,19 @@ public class PlayerAction : MonoBehaviour
     private void slashAttack()
     {
 
-        // Handle Slash projection spawn
+        /* Handle Slash projection spawn
         GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
         slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
-        slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+        slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position; */
+
+        // Handle Slash burst (Level up upgrade) and Handle Slash reverse spawn (Level up upgrade)
+        StartCoroutine(SlashBurst(3, 300)); //first param: number of slashes, second param: rate of attack per minute
+
+        /* Handle Slash reverse spawn (Level up upgrade)
+        GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation * Quaternion.Euler(0,0,-180));
+        slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
+        slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;*/
+
 
     }
 
@@ -125,6 +134,30 @@ public class PlayerAction : MonoBehaviour
     {
         yield return new WaitForSeconds(slashCooldown);
         canSlash = true;
+    }
+
+    private IEnumerator SlashBurst(int slashNumber, float rateOfattack)
+    {
+        float slashDelay = 60 / rateOfattack;
+        // rate of attack is in attacks per minute (RPM), therefore we should calculate how much time passes before slashing again in the same burst.
+
+        // Handle Spawn position for the slashes
+        Vector3 spawnPos =  new Vector3(difference.x, difference.y, 0).normalized;
+        Quaternion spawnRot = attackPoint.transform.rotation;
+
+        for (int i = 0; i < slashNumber; i++)
+        {
+            GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + spawnPos, spawnRot); // It would be wise to use the gun barrel's position and rotation to align the bullet to.
+            slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
+            slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+
+            // Handle Slash reverse spawn (Level up upgrade)
+            GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - spawnPos, spawnRot * Quaternion.Euler(0, 0, -180));
+            slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
+            slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+
+            yield return new WaitForSeconds(slashDelay); // wait till the next attack
+        }
     }
 
     private void bombAttack()
