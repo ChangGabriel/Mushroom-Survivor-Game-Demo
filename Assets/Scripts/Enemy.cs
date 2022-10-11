@@ -10,11 +10,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string enemyName;
     [SerializeField] protected private float maxHealth;
     [SerializeField] protected private float attackCooldown;
+    [SerializeField] private float ExpValue;
     private float health;
     protected private float moveSpeed;
     private bool isAlive;
     private bool isHurt;
     protected private bool canAttack;
+    
 
 
     // Knockback and stun Related
@@ -134,6 +136,7 @@ public class Enemy : MonoBehaviour
                 isAlive = false;
                 enemyRigidbody.velocity = Vector2.zero;
                 die();
+                target.GetComponent<LevelUpSystem>().giveExp(ExpValue);
             }
             else
             {

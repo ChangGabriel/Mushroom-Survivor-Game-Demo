@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 918249177901070831}
   - component: {fileID: 918249177901070830}
   - component: {fileID: 918249177901070829}
+  - component: {fileID: 7269448707310923620}
   - component: {fileID: 1494651346}
   - component: {fileID: 8677341931832112066}
   m_Layer: 0
@@ -649,6 +650,23 @@ MonoBehaviour:
   axePrefab: {fileID: 2909875613846711828, guid: 456c79b979541a24a9e93a5711d79d1b, type: 3}
   axeDamage: 50
   projectileSpeed: 10
+  bombPrefab: {fileID: 5657620354255204369, guid: a7873910572834943bf586959fd0dd4c, type: 3}
+  bombDamage: 80
+  bombCooldown: 2
+--- !u!114 &7269448707310923620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918249177901070832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21519919f506764b93ca5bf0a2f36ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  levelUpFXPrefab: {fileID: 4212490473094411053, guid: aa2ba34aeabb2084d88a104f9dcfa13f, type: 3}
 --- !u!70 &1494651346
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

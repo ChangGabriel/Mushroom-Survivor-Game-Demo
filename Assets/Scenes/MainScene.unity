@@ -123601,14 +123601,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 1346874908, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 918249177494617943, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 918249177901070828, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -123653,38 +123645,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070829, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: bombDamage
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070829, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: bombPrefab
-      value: 
-      objectReference: {fileID: 5657620354255204369, guid: a7873910572834943bf586959fd0dd4c, type: 3}
-    - target: {fileID: 918249177901070829, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: bombCooldown
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 918249177901070832, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Name
       value: MushGobPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070832, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b8275b8029d3f31488e204e21df1dd17, type: 2}
-    - target: {fileID: 918249177901070834, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2b3373f5aca5cf0499ed77b677880125, type: 2}
     - target: {fileID: 918249177901070835, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
       propertyPath: m_Mesh
       value: 
