@@ -46,14 +46,23 @@ public class LevelUpSystem : MonoBehaviour
     {
         //Increase Level
         level++;
-        //Slash related
+        //damage scaling related
         playerAction.setSlashDamagelvl(1.10f);//input are percentage increase in damage ex. 1.10 is 10% increase
-        playerAction.enableOppositeSlash(); //enable slash spawning in the opposite position of the original slash
-        playerAction.setSlashNumber(3); //enable slash burst
-        //Bomb spell related
         playerAction.setBombDamagelvl(1.10f);
-        //Axe throw related
         playerAction.setAxeDamagelvl(1.10f);
+
+        //Handles upgrades for the three attacks. Upgrades unlocks at different levels
+        switch (level)
+        {
+            case 3:
+                playerAction.enableOppositeSlash(); //enable slash spawning in the opposite position of the original slash
+                break;
+            case 4:
+                playerAction.setSlashNumber(3); //enable slash burst
+                break;
+            default:
+                break;
+        }
 
         //Modify Exp values
         currentExp -= requiredExp;

@@ -155,7 +155,7 @@ public class PlayerAction : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         GameObject bombSpawn = Instantiate(bombPrefab, pos, Quaternion.identity);
-        bombSpawn.GetComponent<BombSpell>().setBombDamage(slashDamage);
+        bombSpawn.GetComponent<BombSpell>().setBombDamage(bombDamage);
 
     }
 
