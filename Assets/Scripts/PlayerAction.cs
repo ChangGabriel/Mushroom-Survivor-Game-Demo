@@ -119,7 +119,7 @@ public class PlayerAction : MonoBehaviour
         slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position; */
 
         // Handle Slash burst (Level up upgrade) and Handle Slash reverse spawn (Level up upgrade)
-        StartCoroutine(SlashBurst(3, 300)); //first param: number of slashes, second param: rate of attack per minute
+        StartCoroutine(SlashBurst(1, 300)); //first param: number of slashes, second param: rate of attack per minute
 
         /* Handle Slash reverse spawn (Level up upgrade)
         GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation * Quaternion.Euler(0,0,-180));
@@ -151,10 +151,10 @@ public class PlayerAction : MonoBehaviour
             slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
             slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
 
-            // Handle Slash reverse spawn (Level up upgrade)
+            /* Handle Slash reverse spawn (Level up upgrade)
             GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - spawnPos, spawnRot * Quaternion.Euler(0, 0, -180));
             slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
-            slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+            slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;*/
 
             yield return new WaitForSeconds(slashDelay); // wait till the next attack
         }

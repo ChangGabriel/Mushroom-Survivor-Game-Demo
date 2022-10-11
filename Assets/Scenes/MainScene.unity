@@ -117210,7 +117210,7 @@ MonoBehaviour:
   spawnFrequency: 1
   enemy1: {fileID: 6521388665632397712, guid: a4df167d205c86a468ab9793419fb324, type: 3}
   enemy2: {fileID: 1520561587589445828, guid: 6485094cb96c9df4ab3beb55d421f819, type: 3}
-  enemy3: {fileID: 0}
+  enemy3: {fileID: 874486692073371948, guid: 62561a5fc2a96384dbf6d34ca0ddb21a, type: 3}
   enemyPortals:
   - {fileID: 946831029}
   - {fileID: 157640798}
@@ -117225,19 +117225,19 @@ MonoBehaviour:
   - name: wave1
     nrEnemy1: 30
     nrEnemy2: 10
-    nrEnemy3: 0
+    nrEnemy3: 10
   - name: wave2
     nrEnemy1: 40
     nrEnemy2: 15
-    nrEnemy3: 0
+    nrEnemy3: 15
   - name: wave3
     nrEnemy1: 50
     nrEnemy2: 20
-    nrEnemy3: 0
+    nrEnemy3: 20
   - name: wave4
     nrEnemy1: 60
     nrEnemy2: 30
-    nrEnemy3: 0
+    nrEnemy3: 30
 --- !u!4 &1394369162
 Transform:
   m_ObjectHideFlags: 0
