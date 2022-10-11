@@ -46,6 +46,9 @@ public class LevelUpSystem : MonoBehaviour
     {
         //Modify stats
         level++;
+        playerAction.setSlashDamagelvl(1.10f);//input are percentage increase in damage ex. 1.10 is 10% increase
+        playerAction.setBombDamagelvl(1.10f);
+        playerAction.setAxeDamagelvl(1.10f);
 
         //Modify Exp values
         currentExp -= requiredExp;

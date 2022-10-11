@@ -645,13 +645,13 @@ MonoBehaviour:
   attackPoint: {fileID: 918249177494617936}
   isAttacking: 0
   slashPrefab: {fileID: 7085987466133267681, guid: 8208c5a1e006de64993d1a7c14b1d28a, type: 3}
-  slashDamage: 60
+  slashDamage: 40
   slashCooldown: 0.4
   axePrefab: {fileID: 2909875613846711828, guid: 456c79b979541a24a9e93a5711d79d1b, type: 3}
   axeDamage: 50
   projectileSpeed: 10
   bombPrefab: {fileID: 5657620354255204369, guid: a7873910572834943bf586959fd0dd4c, type: 3}
-  bombDamage: 80
+  bombDamage: 70
   bombCooldown: 2
 --- !u!114 &7269448707310923620
 MonoBehaviour:

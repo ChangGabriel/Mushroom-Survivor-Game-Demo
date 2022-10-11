@@ -195,5 +195,17 @@ public class PlayerAction : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }
-
+    
+    public void setSlashDamagelvl(float percentageDmgInc)
+    {
+        slashDamage = Mathf.RoundToInt(slashDamage * percentageDmgInc); //ex. 100 * 1.10 (10% increase)
+    }
+    public void setBombDamagelvl(float percentageDmgInc)
+    {
+        bombDamage = Mathf.RoundToInt(bombDamage * percentageDmgInc);
+    }
+    public void setAxeDamagelvl(float percentageDmgInc)
+    {
+        axeDamage = Mathf.RoundToInt(axeDamage * percentageDmgInc);
+    }
 }
