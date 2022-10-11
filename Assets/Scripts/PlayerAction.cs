@@ -16,6 +16,8 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] private float slashDamage;
     [SerializeField] private float slashCooldown;
     private bool canSlash;
+    private int numberOfSlashes; //default:1, this increases with levels
+    private bool oppositeSlash = false;
     
     //Axe throw related
     [SerializeField] private GameObject axePrefab;
@@ -37,6 +39,7 @@ public class PlayerAction : MonoBehaviour
     void Start()
     {
         canSlash = true;
+        numberOfSlashes = 1;
         canBomb = true;
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         isAttacking = false;
@@ -56,7 +59,7 @@ public class PlayerAction : MonoBehaviour
             isAttacking = true;
             StartCoroutine(isAttackingTimer());
             playerFaceDirection();
-            slashAttack(); //Slash Attack
+            StartCoroutine(SlashBurst(numberOfSlashes, 300)); ; //Slash Attack, first param: number of slashes, second param: rate of attack per minute
         }
 
         //Bomb Spell
@@ -110,24 +113,6 @@ public class PlayerAction : MonoBehaviour
 
         }
     }
-    private void slashAttack()
-    {
-
-        /* Handle Slash projection spawn
-        GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
-        slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
-        slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position; */
-
-        // Handle Slash burst (Level up upgrade) and Handle Slash reverse spawn (Level up upgrade)
-        StartCoroutine(SlashBurst(1, 300)); //first param: number of slashes, second param: rate of attack per minute
-
-        /* Handle Slash reverse spawn (Level up upgrade)
-        GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation * Quaternion.Euler(0,0,-180));
-        slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
-        slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;*/
-
-
-    }
 
     //handles cooldown for Slash attack
     private IEnumerator slashCooldownTimer()
@@ -136,6 +121,7 @@ public class PlayerAction : MonoBehaviour
         canSlash = true;
     }
 
+    //Handles the spawning of slashes
     private IEnumerator SlashBurst(int slashNumber, float rateOfattack)
     {
         float slashDelay = 60 / rateOfattack;
@@ -151,11 +137,13 @@ public class PlayerAction : MonoBehaviour
             slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
             slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
 
-            /* Handle Slash reverse spawn (Level up upgrade)
-            GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - spawnPos, spawnRot * Quaternion.Euler(0, 0, -180));
-            slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
-            slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;*/
-
+            // Handle Slash reverse spawn (Level up upgrade)
+            if (oppositeSlash)
+            {
+                GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - spawnPos, spawnRot * Quaternion.Euler(0, 0, -180));
+                slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
+                slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+            }
             yield return new WaitForSeconds(slashDelay); // wait till the next attack
         }
     }
@@ -229,9 +217,20 @@ public class PlayerAction : MonoBehaviour
         isAttacking = false;
     }
     
+    //Level up related methods
     public void setSlashDamagelvl(float percentageDmgInc)
     {
         slashDamage = Mathf.RoundToInt(slashDamage * percentageDmgInc); //ex. 100 * 1.10 (10% increase)
+    }
+
+    public void setSlashNumber(int slashNumber)
+    {
+        numberOfSlashes = slashNumber;
+    }
+
+    public void enableOppositeSlash()
+    {
+        oppositeSlash = true;
     }
     public void setBombDamagelvl(float percentageDmgInc)
     {

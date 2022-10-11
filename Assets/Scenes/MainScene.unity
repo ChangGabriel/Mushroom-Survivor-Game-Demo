@@ -117225,19 +117225,19 @@ MonoBehaviour:
   - name: wave1
     nrEnemy1: 30
     nrEnemy2: 10
-    nrEnemy3: 10
+    nrEnemy3: 8
   - name: wave2
     nrEnemy1: 40
     nrEnemy2: 15
-    nrEnemy3: 15
+    nrEnemy3: 10
   - name: wave3
     nrEnemy1: 50
     nrEnemy2: 20
-    nrEnemy3: 20
+    nrEnemy3: 15
   - name: wave4
     nrEnemy1: 60
     nrEnemy2: 30
-    nrEnemy3: 30
+    nrEnemy3: 18
 --- !u!4 &1394369162
 Transform:
   m_ObjectHideFlags: 0

@@ -44,10 +44,15 @@ public class LevelUpSystem : MonoBehaviour
 
     private void LevelUp()
     {
-        //Modify stats
+        //Increase Level
         level++;
+        //Slash related
         playerAction.setSlashDamagelvl(1.10f);//input are percentage increase in damage ex. 1.10 is 10% increase
+        playerAction.enableOppositeSlash(); //enable slash spawning in the opposite position of the original slash
+        playerAction.setSlashNumber(3); //enable slash burst
+        //Bomb spell related
         playerAction.setBombDamagelvl(1.10f);
+        //Axe throw related
         playerAction.setAxeDamagelvl(1.10f);
 
         //Modify Exp values
