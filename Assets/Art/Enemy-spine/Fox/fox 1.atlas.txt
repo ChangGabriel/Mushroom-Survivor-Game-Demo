@@ -4,94 +4,184 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-body
-  rotate: false
-  xy: 2, 1059
-  size: 1126, 962
-  orig: 1126, 962
+bear/ear-L
+  rotate: true
+  xy: 778, 1158
+  size: 207, 246
+  orig: 207, 246
   offset: 0, 0
   index: -1
-ear-L
+bear/ear-R
+  rotate: true
+  xy: 2, 965
+  size: 234, 270
+  orig: 234, 270
+  offset: 0, 0
+  index: -1
+bear/eye
   rotate: false
-  xy: 749, 54
+  xy: 908, 1367
+  size: 130, 126
+  orig: 130, 126
+  offset: 0, 0
+  index: -1
+bear/eyebrow
+  rotate: true
+  xy: 2, 1431
+  size: 62, 67
+  orig: 62, 67
+  offset: 0, 0
+  index: -1
+bear/hind
+  rotate: true
+  xy: 2, 437
+  size: 487, 596
+  orig: 487, 596
+  offset: 0, 0
+  index: -1
+bear/hind-leg-B
+  rotate: true
+  xy: 1026, 1139
+  size: 204, 331
+  orig: 204, 331
+  offset: 0, 0
+  index: -1
+bear/hind-leg-F
+  rotate: true
+  xy: 1672, 1120
+  size: 217, 335
+  orig: 217, 335
+  offset: 0, 0
+  index: -1
+bear/leg-B
+  rotate: true
+  xy: 2, 1201
+  size: 192, 305
+  orig: 192, 305
+  offset: 0, 0
+  index: -1
+bear/leg-F
+  rotate: true
+  xy: 1359, 1135
+  size: 208, 311
+  orig: 208, 311
+  offset: 0, 0
+  index: -1
+bear/tail
+  rotate: false
+  xy: 810, 893
+  size: 247, 244
+  orig: 247, 244
+  offset: 0, 0
+  index: -1
+orange/ear-L
+  rotate: true
+  xy: 309, 1167
   size: 199, 467
   orig: 199, 467
   offset: 0, 0
   index: -1
-ear-R
-  rotate: false
-  xy: 749, 523
+orange/ear-R
+  rotate: true
+  xy: 274, 926
   size: 230, 534
   orig: 230, 534
   offset: 0, 0
   index: -1
-eye
-  rotate: true
-  xy: 981, 861
+orange/eye
+  rotate: false
+  xy: 710, 1368
   size: 196, 125
   orig: 196, 125
   offset: 0, 0
   index: -1
-eyebrow
+orange/eyebrow
   rotate: false
-  xy: 156, 26
+  xy: 71, 1419
   size: 114, 74
   orig: 114, 74
   offset: 0, 0
   index: -1
-head
+orange/hind
   rotate: true
-  xy: 1130, 1044
-  size: 977, 760
-  orig: 977, 760
-  offset: 0, 0
-  index: -1
-hind
-  rotate: true
-  xy: 981, 394
+  xy: 1059, 653
   size: 465, 654
   orig: 465, 654
   offset: 0, 0
   index: -1
-hind-leg-B
-  rotate: false
-  xy: 329, 39
+orange/hind-leg-B
+  rotate: true
+  xy: 341, 1369
   size: 124, 367
   orig: 124, 367
   offset: 0, 0
   index: -1
-hind-leg-F
-  rotate: false
-  xy: 455, 63
+orange/hind-leg-F
+  rotate: true
+  xy: 1040, 1345
   size: 148, 343
   orig: 148, 343
   offset: 0, 0
   index: -1
-leg-B
+orange/leg-B
   rotate: true
-  xy: 2, 102
+  xy: 1385, 1345
   size: 148, 319
   orig: 148, 319
   offset: 0, 0
   index: -1
-leg-F
+orange/leg-F
   rotate: true
-  xy: 2, 252
+  xy: 1706, 1339
   size: 154, 325
   orig: 154, 325
   offset: 0, 0
   index: -1
-tail
+orange/tail
   rotate: false
-  xy: 2, 408
+  xy: 600, 2
   size: 745, 649
   orig: 745, 649
   offset: 0, 0
   index: -1
-whiskers
+orange/whiskers
   rotate: false
-  xy: 2, 2
+  xy: 187, 1395
   size: 152, 98
   orig: 152, 98
+  offset: 0, 0
+  index: -1
+
+fox 12.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bear/body
+  rotate: false
+  xy: 2, 2
+  size: 1106, 948
+  orig: 1106, 948
+  offset: 0, 0
+  index: -1
+bear/head
+  rotate: true
+  xy: 1110, 154
+  size: 781, 712
+  orig: 781, 712
+  offset: 0, 0
+  index: -1
+orange/body
+  rotate: false
+  xy: 2, 952
+  size: 1126, 962
+  orig: 1126, 962
+  offset: 0, 0
+  index: -1
+orange/head
+  rotate: true
+  xy: 1130, 937
+  size: 977, 760
+  orig: 977, 760
   offset: 0, 0
   index: -1
