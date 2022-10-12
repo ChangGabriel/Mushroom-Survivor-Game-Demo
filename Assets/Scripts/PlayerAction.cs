@@ -30,10 +30,13 @@ public class PlayerAction : MonoBehaviour
 
     //Bomb Spell related
     [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject bombGroundDotPrefab;
     [SerializeField] private float bombDamage;
     [SerializeField] private float bombCooldown;
+    [SerializeField] private float groundDotDamage;
+    private float bombAoeSizeMulti = 1f;
     private bool canBomb;
-
+    private bool groundDot = false;
 
     // Start is called before the first frame update
     void Start()
@@ -155,7 +158,14 @@ public class PlayerAction : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         GameObject bombSpawn = Instantiate(bombPrefab, pos, Quaternion.identity);
+        bombSpawn.transform.localScale = bombSpawn.transform.localScale * bombAoeSizeMulti;
         bombSpawn.GetComponent<BombSpell>().setBombDamage(bombDamage);
+        if (groundDot)
+        {
+            GameObject groundDotSpawn = Instantiate(bombGroundDotPrefab, pos, Quaternion.identity);
+            groundDotSpawn.GetComponent<BombGroundDOT>().setBombGroundDamage(groundDotDamage);
+
+        }
 
     }
 
@@ -235,6 +245,15 @@ public class PlayerAction : MonoBehaviour
     public void setBombDamagelvl(float percentageDmgInc)
     {
         bombDamage = Mathf.RoundToInt(bombDamage * percentageDmgInc);
+    }
+    public void increaseAoeBomb(float percentageIncrease)
+    {
+        bombAoeSizeMulti = percentageIncrease;
+    }
+
+    public void enableBombGroundDOT()
+    {
+        groundDot = true;
     }
     public void setAxeDamagelvl(float percentageDmgInc)
     {

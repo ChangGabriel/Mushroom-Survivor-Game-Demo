@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(float damage, bool shake)
     {
         if (isAlive)
         {
@@ -121,7 +121,10 @@ public class Enemy : MonoBehaviour
             DamageNumber damageNum = Instantiate(damageCanvas, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
             damageNum.setUIDamage(Mathf.RoundToInt(damage));
             //Shake Cam
-            CinemachineShake.Instance.shakeCamera(4.0f, 0.1f);
+            if (shake)
+            {
+                CinemachineShake.Instance.shakeCamera(4.0f, 0.1f);
+            }
 
             health -= damage;
             isHurt = true;
