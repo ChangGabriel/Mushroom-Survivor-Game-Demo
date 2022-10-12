@@ -191,6 +191,7 @@ public class waveManager : MonoBehaviour
 
         // If 40s pass after the last enemy in the wave has spawned, we can spawn the next wave even if not all enemies in this wave are dead.
         int timer = 0;
+        bool hasTriggeredNextWave = false;
         while (waveGO.transform.childCount > 0 ) // check if wave is done i.e. all enemies in the wave is dead
         {
             yield return new WaitForSeconds(1f); // check every second
@@ -198,7 +199,13 @@ public class waveManager : MonoBehaviour
             if(timer == 40)
             {
                 canSpawnWave = true;
+                hasTriggeredNextWave = true;
             }
+        }
+
+        if (!hasTriggeredNextWave)
+        {
+            canSpawnWave = true;
         }
 
         Destroy(waveGO);
