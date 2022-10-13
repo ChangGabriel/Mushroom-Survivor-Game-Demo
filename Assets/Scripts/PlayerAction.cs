@@ -16,6 +16,8 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] private float slashDamage;
     [SerializeField] private float slashCooldown;
     private bool canSlash;
+    private int numberOfSlashes; //default:1, this increases with levels
+    private bool oppositeSlash = false;
     
     //Axe throw related
     [SerializeField] private GameObject axePrefab;
@@ -28,15 +30,19 @@ public class PlayerAction : MonoBehaviour
 
     //Bomb Spell related
     [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject bombGroundDotPrefab;
     [SerializeField] private float bombDamage;
     [SerializeField] private float bombCooldown;
+    [SerializeField] private float groundDotDamage;
+    private float bombAoeSizeMulti = 1f;
     private bool canBomb;
-
+    private bool groundDot = false;
 
     // Start is called before the first frame update
     void Start()
     {
         canSlash = true;
+        numberOfSlashes = 1;
         canBomb = true;
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         isAttacking = false;
@@ -56,7 +62,7 @@ public class PlayerAction : MonoBehaviour
             isAttacking = true;
             StartCoroutine(isAttackingTimer());
             playerFaceDirection();
-            slashAttack(); //Slash Attack
+            StartCoroutine(SlashBurst(numberOfSlashes, 300)); ; //Slash Attack, first param: number of slashes, second param: rate of attack per minute
         }
 
         //Bomb Spell
@@ -110,21 +116,39 @@ public class PlayerAction : MonoBehaviour
 
         }
     }
-    private void slashAttack()
-    {
-
-        // Handle Slash projection spawn
-        GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
-        slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
-        slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
-
-    }
 
     //handles cooldown for Slash attack
     private IEnumerator slashCooldownTimer()
     {
         yield return new WaitForSeconds(slashCooldown);
         canSlash = true;
+    }
+
+    //Handles the spawning of slashes
+    private IEnumerator SlashBurst(int slashNumber, float rateOfattack)
+    {
+        float slashDelay = 60 / rateOfattack;
+        // rate of attack is in attacks per minute (RPM), therefore we should calculate how much time passes before slashing again in the same burst.
+
+        // Handle Spawn position for the slashes
+        Vector3 spawnPos =  new Vector3(difference.x, difference.y, 0).normalized;
+        Quaternion spawnRot = attackPoint.transform.rotation;
+
+        for (int i = 0; i < slashNumber; i++)
+        {
+            GameObject slashSpawn = Instantiate(slashPrefab, attackPoint.transform.position + spawnPos, spawnRot); // It would be wise to use the gun barrel's position and rotation to align the bullet to.
+            slashSpawn.GetComponent<Slash>().setSlashDamage(slashDamage);
+            slashSpawn.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+
+            // Handle Slash reverse spawn (Level up upgrade)
+            if (oppositeSlash)
+            {
+                GameObject slashSpawnBack = Instantiate(slashPrefab, attackPoint.transform.position - spawnPos, spawnRot * Quaternion.Euler(0, 0, -180));
+                slashSpawnBack.GetComponent<Slash>().setSlashDamage(slashDamage);
+                slashSpawnBack.GetComponent<Slash>().playerPos = attackPoint.transform.position;
+            }
+            yield return new WaitForSeconds(slashDelay); // wait till the next attack
+        }
     }
 
     private void bombAttack()
@@ -134,7 +158,14 @@ public class PlayerAction : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
         GameObject bombSpawn = Instantiate(bombPrefab, pos, Quaternion.identity);
-        bombSpawn.GetComponent<BombSpell>().setBombDamage(slashDamage);
+        bombSpawn.transform.localScale = bombSpawn.transform.localScale * bombAoeSizeMulti;
+        bombSpawn.GetComponent<BombSpell>().setBombDamage(bombDamage);
+        if (groundDot)
+        {
+            GameObject groundDotSpawn = Instantiate(bombGroundDotPrefab, pos, Quaternion.identity);
+            groundDotSpawn.GetComponent<BombGroundDOT>().setBombGroundDamage(groundDotDamage);
+
+        }
 
     }
 
@@ -195,5 +226,37 @@ public class PlayerAction : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }
+    
+    //Level up related methods
+    public void setSlashDamagelvl(float percentageDmgInc)
+    {
+        slashDamage = Mathf.RoundToInt(slashDamage * percentageDmgInc); //ex. 100 * 1.10 (10% increase)
+    }
 
+    public void setSlashNumber(int slashNumber)
+    {
+        numberOfSlashes = slashNumber;
+    }
+
+    public void enableOppositeSlash()
+    {
+        oppositeSlash = true;
+    }
+    public void setBombDamagelvl(float percentageDmgInc)
+    {
+        bombDamage = Mathf.RoundToInt(bombDamage * percentageDmgInc);
+    }
+    public void increaseAoeBomb(float percentageIncrease)
+    {
+        bombAoeSizeMulti = percentageIncrease;
+    }
+
+    public void enableBombGroundDOT()
+    {
+        groundDot = true;
+    }
+    public void setAxeDamagelvl(float percentageDmgInc)
+    {
+        axeDamage = Mathf.RoundToInt(axeDamage * percentageDmgInc);
+    }
 }

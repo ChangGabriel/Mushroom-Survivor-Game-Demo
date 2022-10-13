@@ -53,7 +53,7 @@ public class AxeThrow : MonoBehaviour
                 other.GetComponent<Enemy>().stun(stunDuration);
             }
             damageRange = Random.Range((damage - damage * damageRangeProcentage), (damage + damage * damageRangeProcentage));
-            other.GetComponent<Enemy>().takeDamage(damageRange);
+            other.GetComponent<Enemy>().takeDamage(damageRange, true);
         }
 
     }

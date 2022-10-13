@@ -35,7 +35,7 @@ public class Slash : MonoBehaviour
                 other.GetComponent<Enemy>().knockback(knockBackDir);
             }
             damageRange = Random.Range((damage - damage * damageRangeProcentage), (damage + damage * damageRangeProcentage));
-            other.GetComponent<Enemy>().takeDamage(damageRange);
+            other.GetComponent<Enemy>().takeDamage(damageRange, true);
         }
         
     }

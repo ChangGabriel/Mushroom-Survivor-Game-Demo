@@ -7,7 +7,8 @@ using System;
 public class waveManager : MonoBehaviour
 {
     /*
-     * Represents a single Enemy Wave
+     * Represents a single Enemy Wave 
+     * 
      */
     [System.Serializable]
     public class Wave
@@ -91,14 +92,12 @@ public class waveManager : MonoBehaviour
             OnStartingEnemiesDead?.Invoke(this, EventArgs.Empty); 
         }
         //start spawning waves from list and also check if wave is over to start next
-        if (state == State.WaveActive && (canSpawnWave || waveOver))      
+        if (state == State.WaveActive && (canSpawnWave))      
         {
             if (!isBattleOver()) //check if we have reached our number of waves for the room
             {
                 StartCoroutine(spawnWave(waves[waveIndex]));
-                StartCoroutine(waveSpawnTimer());
                 canSpawnWave = false;
-                waveOver = false;
                 waveIndex++;
             }
         }
@@ -121,18 +120,23 @@ public class waveManager : MonoBehaviour
         return true;
     }
 
-    public IEnumerator waveSpawnTimer()
+    /*
+     * Old version of the timer.
+     * This was moved to the spawnWave coroutine.
+     * 
+     * public IEnumerator waveSpawnTimer()
     {
         for (int i = 0; i < waveTimer; i++)
         {
             yield return new WaitForSeconds(1f);
             if (waveOver) // Stop timer if wave is defeated early
             {
+                canSpawnWave = true;
                 yield break;
             }
         }
         canSpawnWave = true;
-    }
+    }*/
 
     //handles spawning of one enemy. Spawns the enemy in parent gameObject
     private void spawnEnemy(Transform _enemy, GameObject parent)
@@ -184,14 +188,27 @@ public class waveManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // Time between each spawn, change the number if you want to change the spawning speed
             timeSinceWaveStart += 1.0f;
         }
-        while (waveGO.transform.childCount > 0) // check if wave is done i.e. all enemies in the wave is dead
+
+        // If 40s pass after the last enemy in the wave has spawned, we can spawn the next wave even if not all enemies in this wave are dead.
+        int timer = 0;
+        bool hasTriggeredNextWave = false;
+        while (waveGO.transform.childCount > 0 ) // check if wave is done i.e. all enemies in the wave is dead
         {
             yield return new WaitForSeconds(1f); // check every second
+            timer++;
+            if(timer == 40)
+            {
+                canSpawnWave = true;
+                hasTriggeredNextWave = true;
+            }
         }
-        yield return new WaitForSeconds(2f); //time to wait before next wave
-        Destroy(waveGO);
-        waveOver = true;
 
+        if (!hasTriggeredNextWave)
+        {
+            canSpawnWave = true;
+        }
+
+        Destroy(waveGO);
         yield break;
     }
 

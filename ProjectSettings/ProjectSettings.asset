@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Horde Survival Rush  - Prototype
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 9f633a1e8bf8f6d45805f62b10692544, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

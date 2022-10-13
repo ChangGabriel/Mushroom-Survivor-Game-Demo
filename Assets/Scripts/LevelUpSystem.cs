@@ -44,8 +44,40 @@ public class LevelUpSystem : MonoBehaviour
 
     private void LevelUp()
     {
-        //Modify stats
+        //Increase Level
         level++;
+        //damage scaling related
+        playerAction.setSlashDamagelvl(1.10f);//input are percentage increase in damage ex. 1.10 is 10% increase
+        playerAction.setBombDamagelvl(1.10f);
+        playerAction.setAxeDamagelvl(1.10f);
+
+        //Handles upgrades for the three attacks. Upgrades unlocks at different levels
+        switch (level)
+        {
+            case 2:
+                playerAction.setSlashNumber(2);     //enable slash burst
+                break;
+            case 3:
+                playerAction.enableOppositeSlash(); //enable slash spawning in the opposite position of the original slash
+                playerAction.enableBombGroundDOT(); //enable bomb to spawn a ground DOT effect after exploding
+                break;
+            case 4:
+                playerAction.setSlashNumber(3);   
+                break;
+            case 5:
+                playerAction.increaseAoeBomb(1.5f); //Increase size AOE of Bomb by percentage in decimal form
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            default:
+                break;
+        }
 
         //Modify Exp values
         currentExp -= requiredExp;
