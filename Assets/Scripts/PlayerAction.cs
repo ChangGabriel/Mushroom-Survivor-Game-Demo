@@ -24,9 +24,18 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] private float axeDamage; //axe rotation speed when thrown
     [SerializeField] private float projectileSpeed;
     private GameObject axe;
+    private GameObject CrossAxeRight;
+    private GameObject CrossAxeBack;
+    private GameObject CrossAxeLeft;
+    private float axeSizeMulti = 1f;
     private Vector3 targetPos; //where we want to the axe to reach
+    private Vector3 axeStartPos;
     private bool isThrown;
     private bool canCallBack;
+    private bool axeReturn;
+    private bool axeTimerStarted;
+    private bool CrossAxes;
+    private bool crossAxeSpawned;
 
     //Bomb Spell related
     [SerializeField] private GameObject bombPrefab;
@@ -41,6 +50,7 @@ public class PlayerAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CrossAxes = false;
         canSlash = true;
         numberOfSlashes = 1;
         canBomb = true;
@@ -80,11 +90,13 @@ public class PlayerAction : MonoBehaviour
         {
             isThrown = true;
             isAttacking = true;
+            axeTimerStarted = false;
             StartCoroutine(isAttackingTimer());
             playerFaceDirection();
             if (!canCallBack)
             {
                 targetPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0); //where mouse is when clicked
+                axeStartPos = attackPoint.transform.position;
                 spawnAxe();
             }
         }
@@ -150,10 +162,9 @@ public class PlayerAction : MonoBehaviour
             yield return new WaitForSeconds(slashDelay); // wait till the next attack
         }
     }
-
+    //Handles bomb spell spawning
     private void bombAttack()
     {
-
         // Handle Bomb spell spawn
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
@@ -164,9 +175,7 @@ public class PlayerAction : MonoBehaviour
         {
             GameObject groundDotSpawn = Instantiate(bombGroundDotPrefab, pos, Quaternion.identity);
             groundDotSpawn.GetComponent<BombGroundDOT>().setBombGroundDamage(groundDotDamage);
-
         }
-
     }
 
     //handles cooldown for bomb spell
@@ -184,40 +193,110 @@ public class PlayerAction : MonoBehaviour
         attackPoint.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         // Handles axe projectile spawn
         axe = Instantiate(axePrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
-        axe.GetComponent<AxeThrow>().setPlayerPos(attackPoint.transform.position);
+        axe.transform.localScale = axe.transform.localScale * axeSizeMulti;
         axe.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
+        // Handle cross axe spawns
+        if (CrossAxes)
+        {
+            crossAxeSpawned = true;
+            //Using matrix multiplication to rotate the spawn position
+            CrossAxeRight = Instantiate(axePrefab, attackPoint.transform.position + new Vector3(difference.y, -difference.x, 0).normalized, attackPoint.transform.rotation * Quaternion.Euler(0, 0, -90));
+            CrossAxeRight.transform.localScale = CrossAxeRight.transform.localScale * axeSizeMulti;
+            CrossAxeRight.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
+
+            CrossAxeBack = Instantiate(axePrefab, attackPoint.transform.position - new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation * Quaternion.Euler(0, 0, -180));
+            CrossAxeBack.transform.localScale = CrossAxeBack.transform.localScale * axeSizeMulti;
+            CrossAxeBack.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
+
+            CrossAxeLeft = Instantiate(axePrefab, attackPoint.transform.position + new Vector3(-difference.y, difference.x, 0).normalized, attackPoint.transform.rotation * Quaternion.Euler(0, 0, -270));
+            CrossAxeLeft.transform.localScale = CrossAxeLeft.transform.localScale * axeSizeMulti;
+            CrossAxeLeft.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
+
+        }
     }
 
     private void axeThrow()
     {
         // Handle axe movement and booleans
-        axe.GetComponent<AxeThrow>().setcanDamage(true);
-        axe.GetComponent<AxeThrow>().setisRotating(true);
+        axe.GetComponent<AxeThrow>().activateAxe();
         if (!canCallBack) //move towards target if axe has not been thrown
         {
             axe.transform.position = Vector2.MoveTowards(axe.transform.position, targetPos, projectileSpeed * Time.deltaTime);
+            if (crossAxeSpawned) //Handle cross axe upgrade (Movement)
+            {
+                Vector3 difference = targetPos - axeStartPos;
+                CrossAxeRight.GetComponent<AxeThrow>().activateAxe();
+                CrossAxeBack.GetComponent<AxeThrow>().activateAxe();
+                CrossAxeLeft.GetComponent<AxeThrow>().activateAxe();
+                CrossAxeRight.transform.position = Vector2.MoveTowards(CrossAxeRight.transform.position, axeStartPos + new Vector3(difference.y, -difference.x, 0), projectileSpeed * Time.deltaTime);
+                CrossAxeBack.transform.position = Vector2.MoveTowards(CrossAxeBack.transform.position, axeStartPos - new Vector3(difference.x, difference.y, 0), projectileSpeed * Time.deltaTime);
+                CrossAxeLeft.transform.position = Vector2.MoveTowards(CrossAxeLeft.transform.position, axeStartPos + new Vector3(-difference.y, difference.x, 0), projectileSpeed * Time.deltaTime);
+            }
         }
-        else
+        if(canCallBack && axeReturn)
         {
             axe.transform.position = Vector2.MoveTowards(axe.transform.position, attackPoint.transform.position, projectileSpeed * 4 * Time.deltaTime);
+
+            if (crossAxeSpawned)
+            {
+                CrossAxeRight.GetComponent<AxeThrow>().activateAxe();
+                CrossAxeBack.GetComponent<AxeThrow>().activateAxe();
+                CrossAxeLeft.GetComponent<AxeThrow>().activateAxe();
+                CrossAxeRight.transform.position = Vector2.MoveTowards(CrossAxeRight.transform.position, attackPoint.transform.position, projectileSpeed* 4 * Time.deltaTime);
+                CrossAxeBack.transform.position = Vector2.MoveTowards(CrossAxeBack.transform.position, attackPoint.transform.position, projectileSpeed* 4 * Time.deltaTime);
+                CrossAxeLeft.transform.position = Vector2.MoveTowards(CrossAxeLeft.transform.position, attackPoint.transform.position, projectileSpeed* 4 * Time.deltaTime);
+            }
+            
         }
+        
         // Handle when axe has reach targeted pos, No damage and rotation
         if (Vector2.Distance(axe.transform.position, targetPos) <= 0.01f)
         {
-            isThrown = false;
+            if (!axeTimerStarted)
+            {
+                StartCoroutine(axeReturnTimer()); //start timer for axe return
+                axeTimerStarted = true;
+            }
             canCallBack = true;
-            axe.GetComponent<AxeThrow>().setcanStun(false);
-            axe.GetComponent<AxeThrow>().setisRotating(false);
-            axe.GetComponent<AxeThrow>().setcanDamage(false);
-            axe.GetComponent<AxeThrow>().enemyHit = null;
+            axe.GetComponent<AxeThrow>().resetAxe();
+
+            if (crossAxeSpawned)
+            {
+                CrossAxeRight.GetComponent<AxeThrow>().resetAxe();
+                CrossAxeBack.GetComponent<AxeThrow>().resetAxe();
+                CrossAxeLeft.GetComponent<AxeThrow>().resetAxe();
+            }
         }
-        // Handle when axe has reached back to player
-        if (Vector2.Distance(axe.transform.position, attackPoint.transform.position) <= 0.01f)
+        // Handle when axe(axes) has reached back to player
+        if (crossAxeSpawned)
+        {
+            if((Vector2.Distance(axe.transform.position, attackPoint.transform.position) <= 0.01f) && 
+               (Vector2.Distance(CrossAxeRight.transform.position, attackPoint.transform.position) <= 0.01f) &&
+               (Vector2.Distance(CrossAxeBack.transform.position, attackPoint.transform.position) <= 0.01f) && 
+               (Vector2.Distance(CrossAxeLeft.transform.position, attackPoint.transform.position) <= 0.01f))
+            {
+                Destroy(CrossAxeRight);
+                Destroy(CrossAxeBack);
+                Destroy(CrossAxeLeft);
+                Destroy(axe);
+                isThrown = false;
+                canCallBack = false;
+                axeReturn = false;
+            }  
+        }else if(Vector2.Distance(axe.transform.position, attackPoint.transform.position) <= 0.01f)
         {
             isThrown = false;
             canCallBack = false;
+            axeReturn = false;
             Destroy(axe);
         }
+    }
+
+    //handles timer for axe throw return
+    private IEnumerator axeReturnTimer()
+    {
+        yield return new WaitForSeconds(0.15f);
+        axeReturn = true;
     }
 
     //handles timer for boolean isAttacking
@@ -258,5 +337,13 @@ public class PlayerAction : MonoBehaviour
     public void setAxeDamagelvl(float percentageDmgInc)
     {
         axeDamage = Mathf.RoundToInt(axeDamage * percentageDmgInc);
+    }
+    public void enableCrossAxes()
+    {
+        CrossAxes = true;
+    }
+    public void increaseAxeSize(float percentageIncrease)
+    {
+        axeSizeMulti = percentageIncrease;
     }
 }

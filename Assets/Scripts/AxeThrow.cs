@@ -11,7 +11,6 @@ public class AxeThrow : MonoBehaviour
     [SerializeField] private float stunDuration;
     [HideInInspector]
     public Collider2D enemyHit;
-    private Vector3 playerPos;
     private bool isRotating;
     private bool canDamage;
     private bool canStun;
@@ -74,8 +73,17 @@ public class AxeThrow : MonoBehaviour
     {
         this.damage = damage;
     }
-    public void setPlayerPos(Vector3 pos)
+
+    public void activateAxe()
     {
-        playerPos = pos;
+        setcanDamage(true);
+        setisRotating(true);
+    }
+    public void resetAxe()
+    {
+        setcanStun(false);
+        setisRotating(false);
+        setcanDamage(false);
+        enemyHit = null;
     }
 }
