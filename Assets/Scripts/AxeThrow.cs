@@ -73,4 +73,17 @@ public class AxeThrow : MonoBehaviour
     {
         this.damage = damage;
     }
+
+    public void activateAxe()
+    {
+        setcanDamage(true);
+        setisRotating(true);
+    }
+    public void resetAxe()
+    {
+        setcanStun(false);
+        setisRotating(false);
+        setcanDamage(false);
+        enemyHit = null;
+    }
 }
