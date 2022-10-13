@@ -27,6 +27,8 @@ public class PlayerAction : MonoBehaviour
     private Vector3 targetPos; //where we want to the axe to reach
     private bool isThrown;
     private bool canCallBack;
+    private bool axeReturn;
+    private bool axeTimerStarted;
 
     //Bomb Spell related
     [SerializeField] private GameObject bombPrefab;
@@ -80,6 +82,7 @@ public class PlayerAction : MonoBehaviour
         {
             isThrown = true;
             isAttacking = true;
+            axeTimerStarted = false;
             StartCoroutine(isAttackingTimer());
             playerFaceDirection();
             if (!canCallBack)
@@ -150,10 +153,9 @@ public class PlayerAction : MonoBehaviour
             yield return new WaitForSeconds(slashDelay); // wait till the next attack
         }
     }
-
+    //Handles bomb spell spawning
     private void bombAttack()
     {
-
         // Handle Bomb spell spawn
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = 0;
@@ -164,9 +166,7 @@ public class PlayerAction : MonoBehaviour
         {
             GameObject groundDotSpawn = Instantiate(bombGroundDotPrefab, pos, Quaternion.identity);
             groundDotSpawn.GetComponent<BombGroundDOT>().setBombGroundDamage(groundDotDamage);
-
         }
-
     }
 
     //handles cooldown for bomb spell
@@ -184,7 +184,6 @@ public class PlayerAction : MonoBehaviour
         attackPoint.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         // Handles axe projectile spawn
         axe = Instantiate(axePrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
-        axe.GetComponent<AxeThrow>().setPlayerPos(attackPoint.transform.position);
         axe.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
     }
 
@@ -197,14 +196,19 @@ public class PlayerAction : MonoBehaviour
         {
             axe.transform.position = Vector2.MoveTowards(axe.transform.position, targetPos, projectileSpeed * Time.deltaTime);
         }
-        else
+        if(canCallBack && axeReturn)
         {
             axe.transform.position = Vector2.MoveTowards(axe.transform.position, attackPoint.transform.position, projectileSpeed * 4 * Time.deltaTime);
+
         }
         // Handle when axe has reach targeted pos, No damage and rotation
         if (Vector2.Distance(axe.transform.position, targetPos) <= 0.01f)
         {
-            isThrown = false;
+            if (!axeTimerStarted)
+            {
+                StartCoroutine(axeReturnTimer()); //start timer for axe return
+                axeTimerStarted = true;
+            }
             canCallBack = true;
             axe.GetComponent<AxeThrow>().setcanStun(false);
             axe.GetComponent<AxeThrow>().setisRotating(false);
@@ -216,8 +220,17 @@ public class PlayerAction : MonoBehaviour
         {
             isThrown = false;
             canCallBack = false;
+            axeReturn = false;
             Destroy(axe);
         }
+    }
+
+    //handles timer for axe throw return
+    private IEnumerator axeReturnTimer()
+    {
+        Debug.Log("axeTimer");
+        yield return new WaitForSeconds(0.15f);
+        axeReturn = true;
     }
 
     //handles timer for boolean isAttacking
