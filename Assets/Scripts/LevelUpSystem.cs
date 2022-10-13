@@ -58,22 +58,25 @@ public class LevelUpSystem : MonoBehaviour
                 playerAction.setSlashNumber(2);     //enable slash burst
                 break;
             case 3:
-                playerAction.enableOppositeSlash(); //enable slash spawning in the opposite position of the original slash
-                playerAction.enableBombGroundDOT(); //enable bomb to spawn a ground DOT effect after exploding
+                playerAction.increaseAxeSize(1.5f); //Increase size the axe by percentage in decimal form
                 break;
             case 4:
-                playerAction.setSlashNumber(3);   
+                playerAction.enableOppositeSlash(); //enable slash spawning in the opposite position of the original slash
                 break;
             case 5:
-                playerAction.increaseAoeBomb(1.5f); //Increase size AOE of Bomb by percentage in decimal form
+                playerAction.enableBombGroundDOT(); //enable bomb to spawn a ground DOT effect after exploding
                 break;
             case 6:
+                playerAction.setSlashNumber(3);
                 break;
             case 7:
+                playerAction.enableCrossAxes();     //enable additonal axes to be throwned in a cross pattern
                 break;
             case 8:
+                playerAction.increaseAoeBomb(1.8f); //Increase size AOE of Bomb by percentage in decimal form
                 break;
             case 9:
+                playerAction.increaseAxeSize(2.0f);
                 break;
             default:
                 break;
