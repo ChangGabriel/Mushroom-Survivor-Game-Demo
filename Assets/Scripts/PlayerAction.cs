@@ -195,6 +195,7 @@ public class PlayerAction : MonoBehaviour
         axe = Instantiate(axePrefab, attackPoint.transform.position + new Vector3(difference.x, difference.y, 0).normalized, attackPoint.transform.rotation);
         axe.transform.localScale = axe.transform.localScale * axeSizeMulti;
         axe.GetComponent<AxeThrow>().setAxeDamage(axeDamage);
+        axe.GetComponent<AxeThrow>().muted = false;
         // Handle cross axe spawns
         if (CrossAxes)
         {
@@ -256,6 +257,7 @@ public class PlayerAction : MonoBehaviour
             {
                 StartCoroutine(axeReturnTimer()); //start timer for axe return
                 axeTimerStarted = true;
+                axe.GetComponent<AxeThrow>().mute(true);
             }
             canCallBack = true;
             axe.GetComponent<AxeThrow>().resetAxe();
