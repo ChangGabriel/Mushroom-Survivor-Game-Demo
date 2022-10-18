@@ -29,5 +29,9 @@ public class HealthBar : MonoBehaviour
         {
             hpEffectImage.fillAmount = hpImage.fillAmount;
         }
+        if(playerController.currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

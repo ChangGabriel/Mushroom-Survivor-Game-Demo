@@ -17,8 +17,6 @@ public class Enemy : MonoBehaviour
     private bool isHurt;
     protected private bool canAttack;
     
-
-
     // Knockback and stun Related
     [HideInInspector]
     public bool canBeKnockedBack;

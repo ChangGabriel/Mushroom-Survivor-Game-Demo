@@ -8,6 +8,7 @@ public class PlayerAction : MonoBehaviour
     //Connected objects
     [SerializeField] private Transform attackPoint;
     private SkeletonAnimation skeletonAnimation;
+    private PlayerController playerController;
     private Vector3 difference;
     public bool isAttacking;
 
@@ -55,6 +56,7 @@ public class PlayerAction : MonoBehaviour
         numberOfSlashes = 1;
         canBomb = true;
         skeletonAnimation = GetComponent<SkeletonAnimation>();
+        playerController = GetComponent<PlayerController>();
         isAttacking = false;
 
     }
@@ -62,48 +64,51 @@ public class PlayerAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aim();
-
-        //slash attack
-        if (Input.GetMouseButtonDown(0) && canSlash)
+        if (playerController.isAlive == true)
         {
-            StartCoroutine(slashCooldownTimer());
-            canSlash = false;
-            isAttacking = true;
-            StartCoroutine(isAttackingTimer());
-            playerFaceDirection();
-            StartCoroutine(SlashBurst(numberOfSlashes, 300)); ; //Slash Attack, first param: number of slashes, second param: rate of attack per minute
-        }
-
-        //Bomb Spell
-        if(Input.GetKeyDown("e") && canBomb)
-        {
-            StartCoroutine(bombCooldownTimer());
-            canBomb = false;
-            isAttacking = true;
-            StartCoroutine(isAttackingTimer());
-            playerFaceDirection();
-            bombAttack();
-        }
-        //Axe Throw
-        if (Input.GetMouseButtonDown(1) && !isThrown) 
-        {
-            isThrown = true;
-            isAttacking = true;
-            axeTimerStarted = false;
-            StartCoroutine(isAttackingTimer());
-            playerFaceDirection();
-            if (!canCallBack)
+            aim();
+            //slash attack
+            if (Input.GetMouseButtonDown(0) && canSlash)
             {
-                targetPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0); //where mouse is when clicked
-                axeStartPos = attackPoint.transform.position;
-                spawnAxe();
+                StartCoroutine(slashCooldownTimer());
+                canSlash = false;
+                isAttacking = true;
+                StartCoroutine(isAttackingTimer());
+                playerFaceDirection();
+                StartCoroutine(SlashBurst(numberOfSlashes, 300)); ; //Slash Attack, first param: number of slashes, second param: rate of attack per minute
+            }
+
+            //Bomb Spell
+            if (Input.GetKeyDown("e") && canBomb)
+            {
+                StartCoroutine(bombCooldownTimer());
+                canBomb = false;
+                isAttacking = true;
+                StartCoroutine(isAttackingTimer());
+                playerFaceDirection();
+                bombAttack();
+            }
+            //Axe Throw
+            if (Input.GetMouseButtonDown(1) && !isThrown)
+            {
+                isThrown = true;
+                isAttacking = true;
+                axeTimerStarted = false;
+                StartCoroutine(isAttackingTimer());
+                playerFaceDirection();
+                if (!canCallBack)
+                {
+                    targetPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0); //where mouse is when clicked
+                    axeStartPos = attackPoint.transform.position;
+                    spawnAxe();
+                }
+            }
+            if (isThrown)
+            {
+                axeThrow();
             }
         }
-        if (isThrown)
-        {
-            axeThrow();
-        }
+       
     }
 
     //Handle aiming, shall follow where mousepointer is

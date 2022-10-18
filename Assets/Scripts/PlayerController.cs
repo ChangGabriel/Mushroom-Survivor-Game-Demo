@@ -10,8 +10,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     [SerializeField] private Transform shadow;
     private SkeletonAnimation skeletonAnimation;
+    private MeshRenderer mRenderer;
     private bool isAttacking; //from playerAction script
     [SerializeField] GameObject stepAudioGameObject;
+    [SerializeField] private GameObject UICanvas;
+    private UIHandler UIHandling;
 
     // Player stats
     [SerializeField] private float moveSpeed;
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
     // Hidden variables in inspector
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
-    private bool isAlive;
+    public bool isAlive { get; private set; }
     private bool isHurt;
     private AudioSource[] playerAudioSources; // this is a list of different auido sources connected to the player. [0] refers to step sound effect. [1] refers to get hit SFX
 
@@ -45,15 +48,12 @@ public class PlayerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         mpb = new MaterialPropertyBlock();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
+        mRenderer = GetComponent<MeshRenderer>();
         currentHealth = maxHealth;
         playerAudioSources = stepAudioGameObject.GetComponents<AudioSource>();
         playerAudioSources[0].mute = true;
+        UIHandling = UICanvas.GetComponent<UIHandler>();
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private void FixedUpdate()
@@ -113,12 +113,16 @@ public class PlayerController : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            //Disable related options
             isAlive = false;
+            playerAudioSources[0].mute = true;
             playerRB.velocity = Vector2.zero;
             GetComponent<CapsuleCollider2D>().enabled = false;
             mpb.SetFloat("_FillPhase", 1.0f);
-            GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
+            mRenderer.SetPropertyBlock(mpb);
+            mRenderer.enabled = false;
             StartCoroutine(die());
+            UIHandling.getNotifier().GetComponent<Notifications>().notifyDeath();
         }
         else
         {
