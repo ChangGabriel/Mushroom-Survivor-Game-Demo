@@ -45,6 +45,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected private float attackRange;
 
 
+    // Sound related
+    protected AudioSource soundEffects;
+
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -63,6 +66,9 @@ public class Enemy : MonoBehaviour
 
         // Target player
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        // get the Audio Source component
+        soundEffects = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -144,6 +150,8 @@ public class Enemy : MonoBehaviour
             else
             {
                 Invoke("resetMat", 0.1f);
+                //play damage sound sometimes
+                soundEffects.Play();
             }
         }
         

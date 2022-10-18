@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform shadow;
     private SkeletonAnimation skeletonAnimation;
     private bool isAttacking; //from playerAction script
+    [SerializeField] GameObject stepAudioGameObject;
 
     // Player stats
     [SerializeField] private float moveSpeed;
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isAlive;
     private bool isHurt;
-
+    private AudioSource[] playerAudioSources; // this is a list of different auido sources connected to the player. [0] refers to step sound effect. [1] refers to get hit SFX
 
 
     // Start is called before the first frame update
@@ -45,6 +46,8 @@ public class PlayerController : MonoBehaviour
         mpb = new MaterialPropertyBlock();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         currentHealth = maxHealth;
+        playerAudioSources = stepAudioGameObject.GetComponents<AudioSource>();
+        playerAudioSources[0].mute = true;
 
     }
 
@@ -73,14 +76,19 @@ public class PlayerController : MonoBehaviour
         if(!isHurt && !isAttacking && movement.normalized == Vector2.zero)
         {
             skeletonAnimation.AnimationName = "Idle";
+            playerAudioSources[0].mute = true;
         }
         if (!isHurt && !isAttacking && !(movement.normalized == Vector2.zero) && movement.y <= 0)
         {
             skeletonAnimation.AnimationName = "Run";
+            playerAudioSources[0].mute = false;
+            playerAudioSources[0].pitch = Random.Range(0.8f, 1.4f);
         }
         else if(!isHurt && !isAttacking && !(movement.normalized == Vector2.zero))
         {
             skeletonAnimation.AnimationName = "RunB";
+            playerAudioSources[0].mute = false;
+            playerAudioSources[0].pitch = Random.Range(0.8f, 1.4f);
 
         }
     }
@@ -95,6 +103,9 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(hurtTimer());
         mpb.SetFloat("_FillPhase", 1.0f);
         GetComponent<MeshRenderer>().SetPropertyBlock(mpb);
+
+        //play hit sound
+        playerAudioSources[1].Play();
 
         if (currentHealth < 0)
         {

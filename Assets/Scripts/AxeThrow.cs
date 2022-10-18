@@ -9,16 +9,19 @@ public class AxeThrow : MonoBehaviour
     [SerializeField] private float damageRangeProcentage;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float stunDuration;
-    [HideInInspector]
-    public Collider2D enemyHit;
+    [HideInInspector] public Collider2D enemyHit;
     private bool isRotating;
     private bool canDamage;
     private bool canStun;
+    private AudioSource axeSound;
+    [HideInInspector] public bool muted = true;
 
     // Start is called before the first frame update
     void Start()
     {
         canStun = true;
+        axeSound = GetComponent<AudioSource>();
+        mute(muted);
     }
 
     // Update is called once per frame
@@ -52,7 +55,7 @@ public class AxeThrow : MonoBehaviour
                 other.GetComponent<Enemy>().stun(stunDuration);
             }
             damageRange = Random.Range((damage - damage * damageRangeProcentage), (damage + damage * damageRangeProcentage));
-            other.GetComponent<Enemy>().takeDamage(damageRange, true);
+            other.GetComponent<Enemy>().takeDamage(damageRange, false);
         }
 
     }
@@ -72,6 +75,11 @@ public class AxeThrow : MonoBehaviour
     public void setAxeDamage(float damage)
     {
         this.damage = damage;
+    }
+
+    public void mute(bool mute)
+    {
+        axeSound.mute = mute;
     }
 
     public void activateAxe()
