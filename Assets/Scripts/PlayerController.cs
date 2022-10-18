@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private SkeletonAnimation skeletonAnimation;
     private MeshRenderer mRenderer;
     private bool isAttacking; //from playerAction script
+    [SerializeField] private GameObject deathEffect;
     [SerializeField] GameObject stepAudioGameObject;
     [SerializeField] private GameObject UICanvas;
     private UIHandler UIHandling;
@@ -114,6 +115,7 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             //Disable related options
+            Instantiate(deathEffect, transform.position + new Vector3(0,-0.35f,0), Quaternion.identity);
             isAlive = false;
             playerAudioSources[0].mute = true;
             playerRB.velocity = Vector2.zero;
@@ -133,7 +135,7 @@ public class PlayerController : MonoBehaviour
     //Handle player death
     private IEnumerator die()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(6.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //restart to current scene
 
     }

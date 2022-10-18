@@ -711,7 +711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a15688dd8cf56843a7546ae86391c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadow: {fileID: 0}
+  shadow: {fileID: 8234734408940425059}
+  deathEffect: {fileID: 5609771914516084236, guid: 7c23cdc1587326945b62bf80e10991d2, type: 3}
+  stepAudioGameObject: {fileID: 0}
   moveSpeed: 3
   maxHealth: 120
   currentHealth: 0
