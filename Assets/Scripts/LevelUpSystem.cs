@@ -56,6 +56,7 @@ public class LevelUpSystem : MonoBehaviour
         {
             case 2:
                 playerAction.setSlashNumber(2);     //enable slash burst
+                playerAction.enableBombGroundDOT();
                 break;
             case 3:
                 playerAction.increaseAxeSize(1.5f); //Increase size the axe by percentage in decimal form
