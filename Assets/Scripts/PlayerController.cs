@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private MeshRenderer mRenderer;
     private bool isAttacking; //from playerAction script
     [SerializeField] GameObject stepAudioGameObject;
+    [SerializeField] private GameObject UICanvas;
+    private UIHandler UIHandling;
 
     // Player stats
     [SerializeField] private float moveSpeed;
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         playerAudioSources = stepAudioGameObject.GetComponents<AudioSource>();
         playerAudioSources[0].mute = true;
+        UIHandling = UICanvas.GetComponent<UIHandler>();
 
     }
 
@@ -119,6 +122,7 @@ public class PlayerController : MonoBehaviour
             mRenderer.SetPropertyBlock(mpb);
             mRenderer.enabled = false;
             StartCoroutine(die());
+            UIHandling.getNotifier().GetComponent<Notifications>().notifyDeath();
         }
         else
         {
