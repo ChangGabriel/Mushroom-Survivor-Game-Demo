@@ -12,10 +12,14 @@ public class LevelUpSystem : MonoBehaviour
 
     [SerializeField] private GameObject levelUpFXPrefab;
 
+    [SerializeField] private GameObject UICanvas;
+    private UIHandler UIHandling;
+
     private void Start()
     {
         playerAction = GetComponent<PlayerAction>();
         playerController = GetComponent<PlayerController>();
+        UIHandling = UICanvas.GetComponent<UIHandler>();
     }
 
     private int calculateRequiredExp(int currentLevel)
@@ -85,6 +89,10 @@ public class LevelUpSystem : MonoBehaviour
         //Modify Exp values
         currentExp -= requiredExp;
         Debug.Log("Level:" + level);
+
+        //Send notification
+        UIHandling.getNotifier().GetComponent<Notifications>().notifyLevelUp(level);
+
         //Spawn Levelup FX
         GameObject levelupFX = Instantiate(levelUpFXPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         levelupFX.transform.parent = this.transform;
