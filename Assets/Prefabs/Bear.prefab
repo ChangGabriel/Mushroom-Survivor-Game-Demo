@@ -235,7 +235,7 @@ MonoBehaviour:
   ExpValue: 1
   canBeKnockedBack: 0
   isStunned: 0
-  deathEffect: {fileID: 6485420372967819292, guid: e018f19b68826d046bce0555fb6c4ee4, type: 3}
+  deathEffect: {fileID: 3907819109406500982, guid: 7565be892f1b923449b5b4e438f1b79d, type: 3}
   damageCanvas: {fileID: 702463089465384646, guid: 45ea39b0c9c637c44b2aeefdf12264c7, type: 3}
   target: {fileID: 918249177901070828, guid: 10d227e58287afd4fa9e5427e1f56968, type: 3}
   aggroDistance: 100
