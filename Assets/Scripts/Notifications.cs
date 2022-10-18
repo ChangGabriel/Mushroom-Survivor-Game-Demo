@@ -10,7 +10,7 @@ public class Notifications : MonoBehaviour
 
 
     private string levelUpText = "You have reached level ";
-    private string deathText = "You have died. Restarting in 5 seconds...";
+    private string deathText = "You have died. Restarting soon...";
 
     // Start is called before the first frame update
     void Start()
@@ -19,20 +19,29 @@ public class Notifications : MonoBehaviour
         textColor = textM.color;
     }
 
+    // Shows a notification to the player that they have reached level X
     public void notifyLevelUp(int level)
     {
         textM.text = levelUpText + level;
+        // reset the text color -> makes the text visible again
         textM.color = textColor;
+        // stop previous coroutines so previous notifications do not fade the new one too early
+        StopAllCoroutines();
         StartCoroutine(fade());
     }
 
+    // Shows a notification to the player that they have died
     public void notifyDeath()
     {
         textM.text = deathText;
+        // reset the text color -> makes the text visible again
         textM.color = textColor;
+        // stop previous coroutines so previous notifications do not fade the new one too early
+        StopAllCoroutines();
         StartCoroutine(fade());
     }
 
+    // Fades the text into invisibility
     private IEnumerator fade()
     {
         yield return new WaitForSeconds(3f);
