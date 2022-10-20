@@ -11,6 +11,7 @@ public class DamageNumber : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(fade());
         Destroy(gameObject, lifeTimer);
     }
 
@@ -22,5 +23,16 @@ public class DamageNumber : MonoBehaviour
     public void setUIDamage(float damage)
     {
         damageText.text = damage.ToString(); 
+    }
+
+    // Fades the text into invisibility
+    private IEnumerator fade()
+    {
+        yield return new WaitForSeconds(0.4f);
+        while (damageText.color.a > 0)
+        {
+            damageText.color = new Color(damageText.color.r, damageText.color.g, damageText.color.b, damageText.color.a - 0.07f);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }
