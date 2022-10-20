@@ -88,7 +88,7 @@ public class LevelUpSystem : MonoBehaviour
 
         //Modify Exp values
         currentExp -= requiredExp;
-        Debug.Log("Level:" + level);
+        //Debug.Log("Level:" + level);
 
         //Send notification
         UIHandling.getNotifier().GetComponent<Notifications>().notifyLevelUp(level);

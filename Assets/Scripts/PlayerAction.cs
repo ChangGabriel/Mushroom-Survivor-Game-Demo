@@ -42,10 +42,10 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private GameObject bombGroundDotPrefab;
     [SerializeField] private float bombDamage;
-    [SerializeField] private float bombCooldown;
+    [SerializeField] public float bombCooldown;
     [SerializeField] private float groundDotDamage;
     private float bombAoeSizeMulti = 1f;
-    private bool canBomb;
+    public bool canBomb { get; private set; }
     private bool groundDot = false;
 
     // Start is called before the first frame update
