@@ -64,7 +64,7 @@ public class PlayerAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerController.isAlive == true)
+        if (playerController.isAlive == true && !PauseMenu.gameIsPaused)
         {
             aim();
             //slash attack
@@ -108,7 +108,6 @@ public class PlayerAction : MonoBehaviour
                 axeThrow();
             }
         }
-       
     }
 
     //Handle aiming, shall follow where mousepointer is
