@@ -59,9 +59,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isAlive)
+        if (isAlive && !PauseMenu.gameIsPaused)
         {
             move();
+        }
+    }
+    private void Update()
+    {
+        if (PauseMenu.gameIsPaused) 
+        {
+            playerAudioSources[0].mute = true;
         }
     }
 

@@ -28,6 +28,10 @@ public class AxeThrow : MonoBehaviour
     void Update()
     {
         selfRotate();
+        if (PauseMenu.gameIsPaused) //mute axe if game is paused
+        {
+            mute(true);
+        }
     }
     // Handle rotation of axe when thrown
     private void selfRotate()
