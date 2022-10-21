@@ -38,9 +38,8 @@ public class waveManager : MonoBehaviour
 
     // Event related
     public event EventHandler OnStartingEnemiesDead;
-    //public event EventHandler OnBattleStarted;
     public event EventHandler OnBattleOver;
-
+    [SerializeField] private GameObject victoryMenu;
     // State related
     private State state;
 
@@ -59,7 +58,8 @@ public class waveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OnStartingEnemiesDead += RoomManager_OnStartingEnemiesDead;
+        OnStartingEnemiesDead += WaveManager_OnStartingEnemiesDead;
+        OnBattleOver += WaveManager_OnBattleOver;
         //numberOfEnemies = listOfEnemies.transform.childCount;
         numberOfEnemies = 0;
         waveIndex = 0;
@@ -72,15 +72,24 @@ public class waveManager : MonoBehaviour
     }
 
     //start wavebattle event
-    private void RoomManager_OnStartingEnemiesDead(object sender, System.EventArgs e)
+    private void WaveManager_OnStartingEnemiesDead(object sender, System.EventArgs e)
     {
             startWaveBattle();
             OnStartingEnemiesDead -= OnStartingEnemiesDead;
     }
+    //end wavebattle event
+    private void WaveManager_OnBattleOver(object sender, System.EventArgs e)
+    {
+        //Floor Cleared, do something
+         if (victoryMenu != null)
+         {
+             victoryMenu.SetActive(true);
+         }
+        OnBattleOver -= OnBattleOver;
+    }
     private void startWaveBattle()
     {
         state = State.WaveActive;
-        //OnBattleStarted?.Invoke(this, EventArgs.Empty); //close entry portal
     }
 
     // Update is called once per frame
@@ -101,7 +110,7 @@ public class waveManager : MonoBehaviour
                 waveIndex++;
             }
         }
-        // Victory, wavebattle is over. Open exit portal
+        // Victory, wavebattle is over. 
         if(state == State.BattleOver)
         {
             OnBattleOver?.Invoke(this, EventArgs.Empty); 
